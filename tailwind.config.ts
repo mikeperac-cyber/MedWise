@@ -1,0 +1,76 @@
+import type { Config } from "tailwindcss";
+import formsPlugin from "@tailwindcss/forms";
+import containerQueriesPlugin from "@tailwindcss/container-queries";
+
+const config: Config = {
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx,html}"],
+  theme: {
+    extend: {
+      colors: {
+        surface: "#fff8f7",
+        "on-primary-fixed-variant": "#930009",
+        "on-primary": "#ffffff",
+        "primary-fixed": "#ffdad5",
+        "surface-container-highest": "#fddbd6",
+        "primary-fixed-dim": "#ffb4ab",
+        "on-background": "#291714",
+        "tertiary-fixed-dim": "#9bcaff",
+        "surface-dim": "#f4d3ce",
+        "secondary-fixed-dim": "#ffb4ab",
+        "error-container": "#ffdad6",
+        "on-error": "#ffffff",
+        "secondary-fixed": "#ffdad6",
+        "on-surface": "#291714",
+        "on-surface-variant": "#5e3f3b",
+        "on-tertiary-container": "#fdfcff",
+        "on-error-container": "#93000a",
+        "surface-container-low": "#fff0ee",
+        "inverse-primary": "#ffb4ab",
+        "surface-bright": "#fff8f7",
+        "on-secondary-fixed": "#410002",
+        "surface-container": "#ffe9e6",
+        "on-secondary-container": "#6d0005",
+        "surface-tint": "#c00010",
+        "on-tertiary-fixed": "#001d35",
+        primary: "#bb000f",
+        "primary-vibrant": "#ea1d20",
+        "primary-container": "#e6191e",
+        "on-primary-container": "#fffbff",
+        "on-secondary-fixed-variant": "#8c1715",
+        error: "#ba1a1a",
+        "surface-variant": "#fddbd6",
+        background: "#fff8f7",
+        "on-tertiary-fixed-variant": "#004a7a",
+        "surface-container-high": "#ffe2dd",
+        "secondary-container": "#ff6c5f",
+        "outline-variant": "#e8bcb7",
+        "tertiary-fixed": "#d0e4ff",
+        "tertiary-container": "#0079c4",
+        tertiary: "#005f9c",
+        "inverse-surface": "#402b28",
+        "on-primary-fixed": "#410002",
+        "on-tertiary": "#ffffff",
+        "on-secondary": "#ffffff",
+        "surface-container-lowest": "#ffffff",
+        secondary: "#ad312a",
+        "inverse-on-surface": "#ffedea",
+        outline: "#936e6a",
+        "navy-primary": "#291714",
+      },
+      fontFamily: {
+        serif: ["Newsreader", "Georgia", "serif"],
+        sans: ['"Plus Jakarta Sans"', "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
+      },
+      boxShadow: {
+        luminous: "0 10px 30px -5px rgba(41, 23, 20, 0.04), 0 4px 12px -2px rgba(187, 0, 15, 0.03)",
+        "luminous-hover":
+          "0 20px 35px -8px rgba(41, 23, 20, 0.08), 0 8px 16px -3px rgba(187, 0, 15, 0.05)",
+      },
+    },
+  },
+  plugins: [formsPlugin, containerQueriesPlugin],
+};
+
+export default config;

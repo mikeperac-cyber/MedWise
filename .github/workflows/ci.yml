@@ -1,0 +1,85 @@
+name: CI / CD Pipeline
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-and-build:
+    name: Lint, Test, Typecheck & Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Code Formatting Check (Prettier)
+        run: npm run format:check
+
+      - name: Code Quality Lint (ESLint)
+        run: npm run lint
+
+      - name: TypeScript Typecheck
+        run: npm run typecheck
+
+      - name: Run Unit Tests (Vitest)
+        run: npm run test:run
+
+      - name: Production Bundle Build (Vite)
+        run: npm run build
+
+      # The Akademik Portföy page renders readability and provenance figures
+      # computed from public/drugs.json, and analysis/readability-report.json is
+      # the committed evidence for them. Regenerate it here and fail if it has
+      # drifted, so a change to the corpus or to the plain-language lexicon
+      # cannot silently leave the published numbers wrong.
+      #
+      # 22.x only: scripts/measure_readability.mjs imports src/utils/*.ts and
+      # relies on Node's native type stripping, which Node 20 does not have.
+      - name: Verify readability & provenance report is current
+        if: matrix.node-version == '22.x'
+        run: |
+          cp analysis/readability-report.json "$RUNNER_TEMP/committed.json"
+          npm run measure:readability
+          # generatedAt is a fresh timestamp on every run; compare everything else.
+          jq -S 'del(.generatedAt)' "$RUNNER_TEMP/committed.json" > "$RUNNER_TEMP/before.json"
+          jq -S 'del(.generatedAt)' analysis/readability-report.json > "$RUNNER_TEMP/after.json"
+          if ! diff -u "$RUNNER_TEMP/before.json" "$RUNNER_TEMP/after.json"; then
+            echo "::error file=analysis/readability-report.json::Report is stale. Run 'npm run measure:readability' and commit the result."
+            exit 1
+          fi
+          echo "Report matches the corpus."
+
+      - name: Upload Build Artifacts
+        if: matrix.node-version == '22.x'
+        uses: actions/upload-artifact@v4
+        with:
+          name: medwise-production-dist
+          path: dist/
+          retention-days: 7
+
+      - name: Upload Readability Report
+        if: matrix.node-version == '22.x'
+        uses: actions/upload-artifact@v4
+        with:
+          name: medwise-readability-report
+          path: analysis/readability-report.json
+          retention-days: 30

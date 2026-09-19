@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    /*
+     * Explicit .ts specifiers let one module be consumed by Vite, by `tsc
+     * --noEmit`, and by bare `node` (which strips types natively but will not
+     * guess an extension). That is what lets scripts/measure_readability.mjs
+     * import the real src/utils/readability.ts instead of duplicating the
+     * formula. Safe here because the project never emits via tsc.
+     */
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting / Type Checking */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["src", "tests", "vite.config.ts", "vitest.config.ts", "tailwind.config.ts"]
+}

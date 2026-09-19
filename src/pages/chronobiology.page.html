@@ -1,0 +1,103 @@
+<div
+  class="bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous space-y-6"
+>
+  <div>
+    <div
+      class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-mono text-xs font-semibold border border-outline-variant/50 mb-2"
+    >
+      <span class="material-symbols-outlined text-[14px]">schedule</span>
+      Biyolojik Saatler & Sirkadiyen Enzim Kinetiği
+    </div>
+    <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-on-surface">
+      Kronobiyoloji & Sirkadiyen Tedavi Rehberi
+    </h1>
+    <p class="text-sm text-on-surface-variant mt-1.5 max-w-3xl">
+      İlaç etkinliği günün saatine göre dramatik biçimde değişir. Karaciğer enzim aktiviteleri,
+      renal klirens, gastrik pH ve kan basıncı dalgalanmaları ışığında zamanlanmış farmakoterapi
+      ilkeleri.
+    </p>
+  </div>
+
+  <div id="chrono-picker-host"></div>
+
+  <!-- Featured Chronobiology Card (Active Drug Connected) -->
+  <div
+    class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant/70 space-y-4"
+    id="chronotherapy-card"
+  >
+    <div class="flex items-center justify-between">
+      <div
+        class="w-10 h-10 rounded-xl bg-surface-container-high text-primary flex items-center justify-center"
+      >
+        <span class="material-symbols-outlined text-[22px]">schedule</span>
+      </div>
+      <span class="text-[11px] font-mono font-bold text-outline"
+        >KRONOBİYOLOJİK SENKRONİZASYON</span
+      >
+    </div>
+    <div>
+      <h3 class="font-serif text-lg font-bold text-on-surface" id="chrono-title">
+        Sirkadiyen Hepatik Zirve
+      </h3>
+      <p class="text-xs sm:text-sm text-on-surface-variant mt-1.5 leading-relaxed" id="chrono-desc">
+        HMG-CoA redüktaz enzim aktivitesi gece 00:00 – 04:00 arasında zirve yapar. Kısa yarı ömürlü
+        statinler akşam yemeklerinde alındığında daha yüksek etkinlik gösterir.
+      </p>
+    </div>
+    <div class="pt-3 border-t border-surface-container flex items-center justify-between text-xs">
+      <span class="text-outline font-medium">Hedef Biyoritim Hizalaması</span>
+      <span class="font-mono text-primary font-bold text-sm" id="chrono-time">İdeal: 20:30</span>
+    </div>
+  </div>
+
+  <!-- 4 Pillars of Circadian Pharmacology -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="p-5 rounded-2xl bg-white border border-outline-variant/60 space-y-2">
+      <div class="text-xs font-bold text-primary flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px]">cardiology</span>
+        Kardiyovasküler & Kan Basıncı (06:00 - 09:00)
+      </div>
+      <p class="text-xs text-on-surface-variant leading-relaxed">
+        Sabah saatlerinde katekolamin salınımı ve renin-anjiyotensin-aldosteron sistemi (RAAS) zirve
+        yapar. Akşam alınan antihipertansifler (non-dipper paterninde) gece iskemi ve inme riskini
+        anlamlı oranda azaltır.
+      </p>
+    </div>
+
+    <div class="p-5 rounded-2xl bg-white border border-outline-variant/60 space-y-2">
+      <div class="text-xs font-bold text-primary flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px]">water</span>
+        Gastrik Asit Salgısı (20:00 - 24:00)
+      </div>
+      <p class="text-xs text-on-surface-variant leading-relaxed">
+        Mide pariyetal hücrelerinin H+/K+ ATPaz pompaları gece yarısı maksimum asit salgılar. Gece
+        semptomu olan gastroözofageal reflü ve peptik ülser olgularında akşam H2 blokeri veya akşam
+        yemeği öncesi PPI zamanlaması kritiktir.
+      </p>
+    </div>
+
+    <div class="p-5 rounded-2xl bg-white border border-outline-variant/60 space-y-2">
+      <div class="text-xs font-bold text-primary flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px]">local_pharmacy</span>
+        Karaciğer HMG-CoA Kolesterol Sentezi (00:00 - 04:00)
+      </div>
+      <p class="text-xs text-on-surface-variant leading-relaxed">
+        Hepatik endojen kolesterol üretimi gece uykuda en üst düzeye ulaşır. Simvastatin ve
+        Fluvastatin gibi kısa yarı ömürlü ajanlar akşam alındığında LDL düşürücü etkinlik %30 daha
+        yüksektir.
+      </p>
+    </div>
+
+    <div class="p-5 rounded-2xl bg-white border border-outline-variant/60 space-y-2">
+      <div class="text-xs font-bold text-primary flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[18px]">bedtime</span>
+        İmmün & Solunum Sirkadiyen Ritimleri (04:00 - 06:00)
+      </div>
+      <p class="text-xs text-on-surface-variant leading-relaxed">
+        Bronkodilatasyon sabahın erken saatlerinde en alt seviyeye iner (sabah astım krizi riski).
+        Gece yatmadan önce alınan lökotrien antagonistleri (Montelukast) sabah semptomlarını
+        engellemede üstündür.
+      </p>
+    </div>
+  </div>
+</div>

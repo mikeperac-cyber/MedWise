@@ -1,51 +1,139 @@
-# MedWise - Klinik Farmakoterapi & Doz Takip Sistemi
+# MedWise — mimari turu
 
-Kullanıcının ilettiği referans Bento Grid görseli, tasarım ilkeleri ve tüm gereksinimler doğrultusunda geliştirilen **MedWise**; Türkiye ve ABD ilaç veri tabanı, etkileşimli doz kokpiti, sıvı ve PRN takibi, günlük sağlık motivasyonu ve BYOK (Kendi Anahtarını Getir) Yapay Zeka laboratuvarını 4 bağımsız dosyada (`index.html`, `style.css`, `drugs.json`, `app.js`) sunmaktadır.
-
----
-
-## 1. Mimari ve Dosya Yapısı
-
-| Dosya | Boyut | Açıklama |
-|---|---|---|
-| [index.html](file:///c:/Users/mike/OneDrive/Desktop/Portfolio/MedWise/index.html) | ~48 KB | Bento Grid düzeni, header, sol kokpit, orta monograf alanı, sağ yapay zeka & motivasyon paneli, modal diyalogları. |
-| [style.css](file:///c:/Users/mike/OneDrive/Desktop/Portfolio/MedWise/style.css) | ~4 KB | Özel renk paleti (#bb000f, #291714, #fff8f7), tipografi ayarları, animasyonlar, parıltı efektleri ve yazdırma (print) stilleri. |
-| [drugs.json](file:///c:/Users/mike/OneDrive/Desktop/Portfolio/MedWise/drugs.json) | ~26 KB | Türkiye (TİTCK) ve ABD (FDA) ilaçları, etken maddeler, ticari eşdeğerler, moleküler SVG yapıları, farmakokinetik ve kontrendikasyonlar. |
-| [app.js](file:///c:/Users/mike/OneDrive/Desktop/Portfolio/MedWise/app.js) | ~48 KB | Reaktif doz takip motoru, adherence çemberi, arama ve filtreleme, sıvı takibi, BYOK Gemini & OpenAI API entegrasyonu ve akıllı yerel simülasyon. |
+Bu belge kodun nasıl düzenlendiğini ve neden öyle düzenlendiğini anlatır.
+Projenin ne yapmaya çalıştığı ve ölçülen sonuçlar için [README.md](README.md).
 
 ---
 
-## 2. Hayata Geçirilen Temel Özellikler
+## 1. Sayfa başına bağımsız belge
 
-1. **Görseldeki Özellikler & Bento Grid Arayüzü**:
-   - **Header**: Egemen v2.4 rozeti, `%100 İstemci Taraflı Veri` telemetri çubuğu, Acil Zehir Danışma (114 TR / 1-800-222-1222 US) hızlı arama, BYOK modal butonu, JSON kasa yedekleme/yükleme.
-   - **Sol Sütun (Doz Kokpiti)**:
-     - Dinamik SVG Donut Uyum (Adherence) Halkası (Alınan / Planlanan oranına göre anlık yeniden hesaplanır).
-     - Zaman sıralı doz yuvaları (Alındı / Bekliyor geçişi, tek tıkla durum değiştirme, silme).
-     - Gerektiğinde (PRN) Hızlı Kayıt butonları: Sıvı Alımı (+250ml), Melatonin 1mg, Elektrolit Solüsyonu, D3 Vitamini.
-     - `+ Özel Doz Yapılandır` modal penceresi (ilaç adı, doz, saat ve not ile kokpite yeni doz ekleme).
-     - Sirkadiyen Kronobiyoloji Kartı (seçili ilaca göre ideal biyolojik alım saati tavsiyesi).
-     - Zehirlenme & Doz Aşımı acil destek kartı.
-2. **Türkiye & Amerika İlaçları & Etken Madde Ansiklopedisi**:
-   - Atorvastatin + Ezetimib, Metformin XR, Amoksisilin + Klavulanat (Augmentin), İbuprofen (Advil/Dolven), Parasetamol (Tylenol/Parol), Omeprazol (Prilosec/Losec), Sertralin (Zoloft/Lustral), Levotiroksin (Synthroid/Euthyrox), Aspirin (Coraspin/Bayer), Amlodipin (Norvasc).
-   - Anlık arama çubuğu ve otomatik tamamlama (marka adı, etken madde veya ATC kodu ile arama).
-   - Türkiye TİTCK ve ABD FDA/NDC ruhsatlı müstahzar eşdeğerlerinin yan yana gösterimi.
-   - Vektörel Moleküler İskelet (SVG bağ diyagramları) ve kiralite bilgileri.
-   - Fiziksel tablet geometrisi (çift renk, çentik, boyutlar ve baskı kodu).
-   - Farmakokinetik panel: $T_{max}$, yarı ömür ($t_{1/2}$), CYP metabolizma yolağı, hedef reseptör ve eliminasyon klerensi.
-   - Kontrendikasyonlar ve gıda etkileşimleri (Rabdomiyoliz uyarısı, greyfurt suyu furanokumarin inhibisyonu, laktik asidoz vb.).
-   - "Doz Kokpitine Ekle" butonu ile monograftaki ilacı sirkadiyen saatiyle birlikte anında günlük takip listesine ekleme.
-3. **Günlük Diğer Alımlar & Sıvı Takibi**:
-   - İnteraktif sıvı takip çubuğu (hedef 2.5L, +250ml butonu ile anlık artış, yüzde göstergesi).
-   - Melatonin, elektrolit ve vitaminler için PRN hızlı kayıt mekanizması.
-4. **Sağlık & Tedavi Motivasyon Sistemi**:
-   - Ardışık gün (Streak) sayacı (örn. 14 Ardışık Gün).
-   - Günlük değişen bilimsel ve klinik motivasyon aforizmaları.
-   - Günlük hedef tamamlama rozeti.
-5. **BYOK Yapay Zeka Laboratuvarı**:
-   - Sağlayıcı seçici: Gemini 1.5, GPT-4o, Claude 3.5.
-   - API anahtarı girildiğinde: Tarayıcıdan doğrudan Google Gemini API veya OpenAI API uç noktalarına bağlanarak gerçek zamanlı klinik analiz üretir.
-   - API anahtarı girilmediğinde: Kural tabanlı zengin yerel farmakoloji sentez motoruyla beklemeden, kesintisiz çalışır.
-   - Hızlı soru çipleri (CoQ10 + Atorvastatin, sirkadiyen zamanlama, aspirin + ibuprofen yarışması vb.).
-6. **Lokal Veri Kasası (JSON Export / Import)**:
-   - Kullanıcının tüm aktif doz planını, sıvı tüketimini ve geçmişini tek tıkla JSON olarak indirme ve yedekten geri yükleme.
+Uygulama tek sayfalık bir hash yönlendiricisiydi (`#/kokpit`, `#/ansiklopedi`
+…): altı görünüm tek bir `index.html` içinde duruyor, `router.ts` hangisinin
+görüneceğini `hidden` sınıfıyla ayarlıyordu. Artık altı ayrı HTML belgesi var.
+
+| Belge                | Yol              | Giriş noktası                |
+| -------------------- | ---------------- | ---------------------------- |
+| `index.html`         | `/`              | `src/pages/cockpit.ts`       |
+| `ansiklopedi.html`   | `/ansiklopedi`   | `src/pages/encyclopedia.ts`  |
+| `etkilesim.html`     | `/etkilesim`     | `src/pages/interactions.ts`  |
+| `kronobiyoloji.html` | `/kronobiyoloji` | `src/pages/chronobiology.ts` |
+| `yapay-zeka.html`    | `/yapay-zeka`    | `src/pages/ailab.ts`         |
+| `portfolyo.html`     | `/portfolyo`     | `src/pages/portfolio.ts`     |
+
+Kazanç: her sayfanın kendi URL'si, kendi `<title>`'ı ve kendi JavaScript paketi
+var. Kronobiyoloji sayfası kendi kodundan 1.6 kB indirir; ansiklopedinin 23.9 kB
+monograf oluşturucusunu indirmez.
+
+### Ortak arayüz nasıl paylaşılıyor
+
+Başlık, altbilgi ve pencereler tek kopya hâlinde `partials/` altında durur.
+`vite.config.ts` içindeki yaklaşık 40 satırlık `htmlIncludes` eklentisi,
+derleme sırasında `<!--@include partials/header.html -->` yönergelerini çözer.
+
+Sonuç **statik** HTML'dir: ortak arayüz sunucudan gelen belgenin içindedir,
+tarayıcı onu sonradan çizmez. İstemci tarafında şablon motoru yoktur.
+
+Etkin sekme `<body data-route="...">` özniteliğinden okunur; kabuk bunu okuyup
+ilgili bağlantıya `aria-current="page"` ve vurgu sınıflarını uygular.
+
+---
+
+## 2. Dizin düzeni
+
+```
+partials/                 ortak başlık, altbilgi, pencereler (tek kopya)
+  header.html             üst çubuk + mobil sekme şeridi
+  footer.html             altbilgi
+  overlays.html           BYOK penceresi, sorumluluk reddi, bildirim yığını
+  cockpit-overlays.html   yalnızca kokpitte kullanılan "özel doz" penceresi
+
+src/pages/
+  *.page.html             her sayfanın kendi içeriği (main içine gömülür)
+  *.ts                    her sayfanın giriş noktası — ince, yalnızca bağlar
+
+src/shell/shell.ts        gezinme vurgusu, pencereler + odak tuzağı,
+                          bildirimler, BYOK anahtarı, JSON yedekleme
+
+src/features/
+  drugData.ts             veri kümesini yükler (her sayfa bunu kullanabilir)
+  encyclopedia.ts         arama + monograf oluşturucu
+  cockpit.ts              dozlar, uyum halkası, su, PRN
+  interactionLab.ts       ilaç seçim listesi ve etkileşim sonuçları
+  chronoBoard.ts          zamanlama kartı ve ilaç seçici
+  portfolioReport.ts      canlı ölçüm raporu + klinik vakalar
+  aiLab.ts                BYOK paneli
+
+src/utils/
+  readability.ts          Ateşman + Bezirci-Yılmaz okunabilirlik ölçümü
+  provenance.ts           kayıt başına kaynak doğrulaması
+  plainLanguage.ts        ATC sınıfından sade Türkçe özet
+  clinical.ts             uyum hesabı, Türkçe arama normalizasyonu
+
+src/services/
+  ai.ts                   sağlayıcı çağrıları (yerel yedek motor YOK)
+  interactions.ts         etkileşim çözümleme motoru
+  storage.ts              localStorage okuma/yazma, seri hesabı
+```
+
+`drugData.ts` neden `encyclopedia.ts`'ten ayrı: etkileşim, kronobiyoloji ve
+portföy sayfaları yalnızca veri kümesine ihtiyaç duyuyor. Yükleyici
+ansiklopedinin içinde kaldığında bu üç sayfa monograf oluşturucusunu da paketine
+çekiyordu — sayfa başına DOM sözleşmesi testi bunu yakaladı.
+
+---
+
+## 3. Veri katmanı ve dürüstlük kuralları
+
+Veri kümesindeki 593 kaydın 537'sinin ATC, NDC ve TİTCK numaraları
+`scripts/generate_drugs.mjs` tarafından bir döngü sayacından üretilmiştir
+(ayrıntı: [README.md](README.md)). Kod bu gerçeği üç yerde uygular:
+
+1. `provenance.ts` her kaydı ATC kodunun biçimine bakarak `verified` veya
+   `unverified` diye sınıflar.
+2. Monograf, doğrulanamayan kayıtlarda kırmızı bir uyarı bandı çizer ve üç
+   tanımlayıcıyı da üstü çizili, "(üretilmiş değer)" etiketli gösterir.
+3. `plainLanguage.ts`, doğrulanamayan bir kayıt için özet üretmeyi **reddeder**
+   ve `null` döner. Uydurma bir sınıf kodundan hastaya "bu ilaç şuna yarar"
+   demek, hiçbir şey dememekten kötüdür.
+
+---
+
+## 4. Arayüz katmanlaması
+
+Monograf ve etkileşim sonuçları iki katmanlıdır:
+
+- **Üstte** sade Türkçe: "Bu ilaç kolesterolü iki ayrı yoldan düşürür."
+- **Altta**, `<details>` içinde: "Neden? Teknik açıklamayı göster" — HMG-CoA
+  redüktaz ve CYP3A4 metni olduğu gibi durur.
+
+Hiçbir teknik metin silinmedi. Hasta okuyabildiğini okur, isteyen mekanizmayı
+açar. Ansiklopedi ayrıca tabletin fiziksel görünüşünü (renk, ebat, baskı kodu)
+molekül diyagramının üstüne taşır: ilacını tanıyamayan biri onu isminden değil,
+görünüşünden tanır.
+
+---
+
+## 5. Kaldırılanlar
+
+| Ne                                          | Neden                                                                             |
+| ------------------------------------------- | --------------------------------------------------------------------------------- |
+| `app.js`, `style.css` (kök dizin)           | Vite + TypeScript + Tailwind boru hattına taşındı                                 |
+| `src/main.ts` (1443 satır), `src/router.ts` | Kabuk + özellik modülleri + altı sayfa girişi ile değiştirildi                    |
+| Yerel "klinik sentez motoru"                | Anahtar kelimeye bakan beş dallı `if/else` idi; hazır metni analiz gibi sunuyordu |
+| Başlangıç verisi (`streak: 14`, 2100 ml)    | Yeni kullanıcıya hak etmediği iki haftalık uyum gösteriyordu                      |
+| "917.964 indekslenmiş formülasyon" rozeti   | Kayıt sayısı 1548 ile çarpılıyordu; artık gerçek sayı yazıyor                     |
+
+---
+
+## 6. Testler
+
+`tests/dom.test.ts` — sayfa başına DOM sözleşmesi. Her sayfanın
+`@include`'larını Vite eklentisiyle aynı şekilde çözer, o sayfanın içe aktarma
+grafiğini yürür ve kodun `byId(...)` ile eriştiği her elementin o sayfanın
+işaretlemesinde bulunduğunu doğrular. Ayrıca işaretlemedeki her satır içi
+`onclick` işleyicisinin o sayfa tarafından `window`'a bağlandığını kontrol eder.
+Çok sayfalı mimarinin tipik hatası budur: bir sayfada çalışan kod, açmadığınız
+başka bir sayfada sessizce ölüdür.
+
+`tests/dataQuality.test.ts` — okunabilirlik formülleri, kaynak sınıflandırması
+ve sade dil katmanının kapsama/reddetme davranışı.
