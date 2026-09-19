@@ -1,0 +1,87 @@
+<!-- ========================================================================= -->
+<!-- MODAL: ÖZEL DOZ YAPILANDIRMA                                              -->
+<!-- ========================================================================= -->
+<div
+  id="custom-dose-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden"
+  onclick="if (event.target === this) closeCustomDoseModal();"
+>
+  <div
+    class="bg-white rounded-3xl border border-outline-variant max-w-md w-full p-6 shadow-2xl space-y-4 animate-fadeIn"
+  >
+    <div class="flex items-center justify-between border-b border-surface-container pb-3">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[22px]">alarm_add</span>
+        <h3 class="font-serif text-lg font-bold text-on-surface">Özel Doz Takvimi Yapılandır</h3>
+      </div>
+      <button
+        class="p-1 rounded-lg text-outline hover:text-on-surface"
+        onclick="closeCustomDoseModal()"
+      >
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <form onsubmit="handleCustomDoseSubmit(event)" class="space-y-3">
+      <div>
+        <label class="block text-xs font-bold text-on-surface mb-1">İlaç / Takviye Adı</label>
+        <input
+          type="text"
+          id="custom-drug-name"
+          required
+          placeholder="örn. B12 Vitamini veya Magnezyum Sitrat"
+          class="w-full p-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-1 focus:ring-primary"
+        />
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">Dozaj (mg / ml)</label>
+          <input
+            type="text"
+            id="custom-drug-dose"
+            required
+            placeholder="örn. 1000mcg / 200mg"
+            class="w-full p-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-1 focus:ring-primary"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-on-surface mb-1">Planlanan Saat</label>
+          <input
+            type="time"
+            id="custom-drug-time"
+            required
+            value="09:00"
+            class="w-full p-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-1 focus:ring-primary"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-on-surface mb-1">Kullanım Talimatı / Not</label>
+        <input
+          type="text"
+          id="custom-drug-note"
+          placeholder="örn. Sabah kahvaltısından hemen sonra, bol su ile"
+          class="w-full p-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-1 focus:ring-primary"
+        />
+      </div>
+
+      <div class="pt-3 border-t border-surface-container flex justify-end gap-2">
+        <button
+          type="button"
+          class="px-4 py-2 rounded-xl border border-outline-variant text-xs font-medium hover:bg-surface-container-low"
+          onclick="closeCustomDoseModal()"
+        >
+          Vazgeç
+        </button>
+        <button
+          type="submit"
+          class="px-5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#99000c] shadow-sm"
+        >
+          Kokpite Ekle
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

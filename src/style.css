@@ -1,6 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* =========================================================================
    MedWise - Egemen Klinik Farmakoterapi & Doz Takip Sistemi
-   Custom Stylesheet (style.css)
+   Custom Stylesheet (src/style.css)
    ========================================================================= */
 
 :root {
@@ -9,28 +13,28 @@
   --on-surface-variant: #5e3f3b;
   --outline: #936e6a;
   --outline-variant: #e8bcb7;
-  
+
   --primary: #bb000f;
   --primary-vibrant: #ea1d20;
   --primary-container: #e6191e;
   --primary-fixed: #ffdad5;
   --primary-fixed-dim: #ffb4ab;
   --on-primary: #ffffff;
-  
+
   --secondary: #ad312a;
   --secondary-fixed: #ffdad6;
   --secondary-container: #ff6c5f;
-  
+
   --tertiary: #005f9c;
   --tertiary-container: #0079c4;
   --tertiary-fixed: #d0e4ff;
-  
+
   --surface-container-lowest: #ffffff;
   --surface-container-low: #fff0ee;
   --surface-container: #ffe9e6;
   --surface-container-high: #ffe2dd;
   --surface-container-highest: #fddbd6;
-  
+
   --error: #ba1a1a;
   --error-container: #ffdad6;
   --on-error-container: #93000a;
@@ -38,14 +42,18 @@
 
 /* Material Symbols & Icon Typography */
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
   display: inline-block;
   vertical-align: middle;
   line-height: 1;
 }
 
 .material-symbols-outlined.fill-icon {
-  font-variation-settings: 'FILL' 1;
+  font-variation-settings: "FILL" 1;
 }
 
 /* Base resets & typography */
@@ -89,11 +97,15 @@ body {
 
 /* Card Elevation & Shadows */
 .shadow-luminous {
-  box-shadow: 0 10px 30px -5px rgba(41, 23, 20, 0.04), 0 4px 12px -2px rgba(187, 0, 15, 0.03);
+  box-shadow:
+    0 10px 30px -5px rgba(41, 23, 20, 0.04),
+    0 4px 12px -2px rgba(187, 0, 15, 0.03);
 }
 
 .shadow-luminous-hover:hover {
-  box-shadow: 0 20px 35px -8px rgba(41, 23, 20, 0.08), 0 8px 16px -3px rgba(187, 0, 15, 0.05);
+  box-shadow:
+    0 20px 35px -8px rgba(41, 23, 20, 0.08),
+    0 8px 16px -3px rgba(187, 0, 15, 0.05);
 }
 
 .shadow-2xs {
@@ -121,8 +133,22 @@ body {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.page-view {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide horizontal scrollbars for mobile tab bar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 rgba(187, 0, 15, 0.2);
   }
   50% {
@@ -132,6 +158,36 @@ body {
 
 .pulse-glow {
   animation: pulseGlow 2s infinite;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(0.95);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+}
+
+.animate-toastIn {
+  animation: toastIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-toastOut {
+  animation: toastOut 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Search Dropdown / Autocomplete Results */
@@ -170,7 +226,11 @@ body {
     background: #ffffff !important;
     color: #000000 !important;
   }
-  header, aside, footer, #ai-workbench, .no-print {
+  header,
+  aside,
+  footer,
+  #ai-workbench,
+  .no-print {
     display: none !important;
   }
   main {
@@ -185,4 +245,35 @@ body {
     border: none !important;
     box-shadow: none !important;
   }
+}
+
+/*
+ * Skip link: lets a keyboard or screen-reader user jump past the header and the
+ * horizontal tab strip straight to the page content. Visually hidden until it
+ * receives focus.
+ */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 60;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  background-color: #bb000f;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  transition: top 150ms ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+  outline: 3px solid #291714;
+  outline-offset: 2px;
+}
+
+/* Never remove the focus ring; make it visible against every surface. */
+:focus-visible {
+  outline: 2px solid #bb000f;
+  outline-offset: 2px;
 }

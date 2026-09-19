@@ -1,0 +1,198 @@
+<header
+  class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-surface-container-highest shadow-[0_1px_3px_0_rgba(41,23,20,0.04)]"
+>
+  <div
+    class="max-w-[1720px] mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 sm:h-20 w-full gap-4 lg:gap-6"
+  >
+    <!-- Brand & System Pill -->
+    <div class="flex items-center gap-4 lg:gap-6">
+      <a class="flex items-center gap-3 group" href="/">
+        <div
+          class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-primary text-white flex items-center justify-center shadow-sm group-hover:bg-[#99000c] transition-colors"
+        >
+          <span class="material-symbols-outlined text-[24px] fill-icon">shield</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl sm:text-2xl font-serif font-bold tracking-tight text-on-surface"
+              >MedWise</span
+            >
+            <span
+              class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-mono text-[10px] font-semibold border border-outline-variant/60"
+            >
+              Egemen v2.5
+            </span>
+          </div>
+          <p class="text-[11px] text-outline font-medium hidden sm:block">
+            Klinik Karar Destek & Portföy Araştırma Projesi
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Central Desktop Navigation Tabs (Multi-Page Architecture) -->
+    <nav
+      class="hidden xl:flex items-center gap-1 p-1 bg-surface-container-low rounded-2xl border border-outline-variant/60 text-xs font-semibold"
+      aria-label="Ana Gezinme"
+    >
+      <a
+        href="/"
+        data-nav-route="kokpit"
+        class="px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 text-primary bg-primary-fixed/60 font-bold shadow-2xs"
+      >
+        <span class="material-symbols-outlined text-[17px]">schedule</span>
+        <span>Doz Kokpiti</span>
+      </a>
+      <a
+        href="/ansiklopedi"
+        data-nav-route="ansiklopedi"
+        class="px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+      >
+        <span class="material-symbols-outlined text-[17px]">menu_book</span>
+        <span>İlaç Ansiklopedisi</span>
+      </a>
+      <a
+        href="/etkilesim"
+        data-nav-route="etkilesim"
+        class="px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+      >
+        <span class="material-symbols-outlined text-[17px]">sync_alt</span>
+        <span>Çapraz Etkileşim</span>
+      </a>
+      <a
+        href="/kronobiyoloji"
+        data-nav-route="kronobiyoloji"
+        class="px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+      >
+        <span class="material-symbols-outlined text-[17px]">bedtime</span>
+        <span>Kronobiyoloji</span>
+      </a>
+      <a
+        href="/yapay-zeka"
+        data-nav-route="yapay-zeka"
+        class="px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+      >
+        <span class="material-symbols-outlined text-[17px]">smart_toy</span>
+        <span>BYOK AI Lab</span>
+      </a>
+      <a
+        href="/portfolyo"
+        data-nav-route="portfolyo"
+        class="px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 bg-gradient-to-r from-amber-100 to-primary-fixed text-primary hover:from-amber-200 border border-amber-300/80 font-bold shadow-xs"
+      >
+        <span class="material-symbols-outlined text-[17px] text-amber-700">school</span>
+        <span>Akademik Portföy</span>
+      </a>
+    </nav>
+
+    <!-- Trailing Action Cluster -->
+    <div class="flex items-center gap-2.5">
+      <!-- Poison Control Direct Call -->
+      <a
+        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-primary bg-primary-fixed/50 hover:bg-primary-fixed border border-outline-variant/70 transition-colors"
+        href="tel:114"
+        title="Zehir Danışma Hattı"
+      >
+        <span class="material-symbols-outlined text-[17px] text-primary">phone_in_talk</span>
+        <span class="hidden 2xl:inline">Zehir: 114</span>
+      </a>
+
+      <!-- BYOK Settings Trigger -->
+      <button
+        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-primary hover:bg-[#99000c] text-white text-xs font-semibold tracking-wide transition-all shadow-sm active:scale-[0.98]"
+        onclick="openByokModal()"
+        title="BYOK Yapay Zeka Anahtarlarını Yönet"
+      >
+        <span class="material-symbols-outlined text-[17px] text-primary-fixed">key</span>
+        <span class="hidden md:inline">BYOK Motoru</span>
+      </button>
+      <span
+        id="byok-mode-pill"
+        class="hidden lg:inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-mono text-[10px] font-semibold border border-outline-variant/60"
+        >BYOK: anahtar girilmedi</span
+      >
+
+      <!-- Import / Export Vault -->
+      <div class="flex items-center gap-1">
+        <button
+          class="p-2 rounded-xl border border-outline-variant/70 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors"
+          onclick="exportData()"
+          title="Yerel Kasayı Yedekle (JSON)"
+        >
+          <span class="material-symbols-outlined text-[20px]">download</span>
+        </button>
+        <label
+          class="p-2 rounded-xl border border-outline-variant/70 text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors cursor-pointer"
+          title="Yedeği Geri Yükle (JSON)"
+        >
+          <span class="material-symbols-outlined text-[20px]">upload</span>
+          <input
+            type="file"
+            id="import-json-input"
+            accept=".json"
+            class="hidden"
+            onchange="importData(event)"
+          />
+        </label>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div
+  class="xl:hidden sticky top-16 sm:top-20 z-30 bg-white/95 backdrop-blur-md border-b border-surface-container-highest px-4 py-2.5 overflow-x-auto shadow-xs"
+>
+  <nav
+    class="flex items-center gap-2 text-xs font-semibold min-w-max mx-auto max-w-[1720px]"
+    aria-label="Mobil Bölüm Geçişi"
+  >
+    <a
+      href="/"
+      data-nav-route="kokpit"
+      class="px-3.5 py-2 rounded-xl flex items-center gap-1.5 whitespace-nowrap active:scale-95 transition-all text-primary bg-primary-fixed/60 font-bold shadow-2xs"
+    >
+      <span class="material-symbols-outlined text-[16px]">schedule</span>
+      <span>Doz Kokpiti</span>
+    </a>
+    <a
+      href="/ansiklopedi"
+      data-nav-route="ansiklopedi"
+      class="px-3.5 py-2 rounded-xl flex items-center gap-1.5 whitespace-nowrap active:scale-95 transition-all text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+    >
+      <span class="material-symbols-outlined text-[16px]">menu_book</span>
+      <span>İlaç Ansiklopedisi</span>
+    </a>
+    <a
+      href="/etkilesim"
+      data-nav-route="etkilesim"
+      class="px-3.5 py-2 rounded-xl flex items-center gap-1.5 whitespace-nowrap active:scale-95 transition-all text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+    >
+      <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+      <span>Çapraz Etkileşim</span>
+    </a>
+    <a
+      href="/kronobiyoloji"
+      data-nav-route="kronobiyoloji"
+      class="px-3.5 py-2 rounded-xl flex items-center gap-1.5 whitespace-nowrap active:scale-95 transition-all text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+    >
+      <span class="material-symbols-outlined text-[16px]">bedtime</span>
+      <span>Kronobiyoloji</span>
+    </a>
+    <a
+      href="/yapay-zeka"
+      data-nav-route="yapay-zeka"
+      class="px-3.5 py-2 rounded-xl flex items-center gap-1.5 whitespace-nowrap active:scale-95 transition-all text-on-surface-variant hover:text-primary hover:bg-surface-container font-medium"
+    >
+      <span class="material-symbols-outlined text-[16px]">smart_toy</span>
+      <span>BYOK AI Lab</span>
+    </a>
+    <a
+      href="/portfolyo"
+      data-nav-route="portfolyo"
+      class="px-3.5 py-2 rounded-xl flex items-center gap-1.5 whitespace-nowrap active:scale-95 transition-all bg-gradient-to-r from-amber-100 to-primary-fixed text-primary font-bold border border-amber-300"
+    >
+      <span class="material-symbols-outlined text-[16px] text-amber-700">school</span>
+      <span>Akademik Portföy</span>
+    </a>
+  </nav>
+</div>

@@ -1,0 +1,87 @@
+        <div class="bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-mono text-xs font-semibold border border-outline-variant/50 mb-2">
+              <span class="material-symbols-outlined text-[14px]">sync_alt</span>
+              Çift Yönlü Farmakokinetik & Farmakodinamik Analiz
+            </div>
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-on-surface">
+              Çapraz İlaç Etkileşim & Toksisite Motoru
+            </h1>
+            <p class="text-sm text-on-surface-variant mt-1.5 max-w-3xl">
+              Birlikte kullandığınız iki veya daha fazla ilacı seçin. Birbirlerini etkileyip etkilemediklerini sade bir dille anlatalım; isterseniz altındaki biyokimyasal açıklamayı da açabilirsiniz.
+            </p>
+          </div>
+
+          <!-- Drug Selection Tray -->
+          <div class="p-5 rounded-2xl bg-surface-container-low/70 border border-outline-variant/60 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-outline uppercase tracking-wider">
+                Analiz Tepsisi (Seçilen İlaçlar)
+              </span>
+              <button
+                class="text-xs text-error font-semibold hover:underline"
+                onclick="clearInteractionTray()"
+              >
+                Tepsiyi Temizle
+              </button>
+            </div>
+
+            <!-- Chips of selected drugs for interaction checking -->
+            <div class="flex flex-wrap items-center gap-2 min-h-[44px]" id="interaction-tray">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Quick Search Input to Add to Tray -->
+            <div class="relative">
+              <input
+                type="text"
+                id="interaction-search-input"
+                placeholder="Tepsiye eklemek için ilaç veya etken madde arayın (örn. Klaritromisin, Rivaroksaban, Diklofenak)..."
+                class="w-full h-12 pl-10 pr-4 rounded-xl border border-outline-variant bg-white text-xs text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
+                autocomplete="off"
+              />
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+                <span class="material-symbols-outlined text-[18px]">search</span>
+              </span>
+              <div id="interaction-search-dropdown" class="search-results-dropdown hidden"></div>
+            </div>
+
+            <!-- High-Yield Preset Case Combos (Admissions Showcase) -->
+            <div class="pt-2 border-t border-outline-variant/40 space-y-2">
+              <span class="text-[11px] font-bold text-outline uppercase tracking-wider">
+                Hazır Klinik Etkileşim Vakalarını Dene:
+              </span>
+              <div class="flex flex-wrap gap-2">
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container text-xs font-medium border border-outline-variant/60 text-on-surface transition-colors"
+                  onclick="loadInteractionPreset(['atorvastatin', 'clarithromycin'])"
+                >
+                  ⚠️ Statin + Klaritromisin (CYP3A4 Rabdomiyoliz)
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container text-xs font-medium border border-outline-variant/60 text-on-surface transition-colors"
+                  onclick="loadInteractionPreset(['rivaroxaban', 'diclofenac'])"
+                >
+                  🩸 Rivaroksaban + Diklofenak (Majör GI Kanama)
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container text-xs font-medium border border-outline-variant/60 text-on-surface transition-colors"
+                  onclick="loadInteractionPreset(['ramipril', 'spironolactone'])"
+                >
+                  ⚡ Ramipril + Spironolakton (Hiperkalemi)
+                </button>
+                <button
+                  class="px-3 py-1.5 rounded-lg bg-white hover:bg-surface-container text-xs font-medium border border-outline-variant/60 text-on-surface transition-colors"
+                  onclick="loadInteractionPreset(['clopidogrel', 'omeprazole'])"
+                >
+                  🛡️ Klopidogrel + Omeprazol (CYP2C19 Direnci)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interaction Live Results Area -->
+          <div id="interaction-results-container" class="space-y-4">
+            <!-- Populated via main.ts -->
+          </div>
+        </div>

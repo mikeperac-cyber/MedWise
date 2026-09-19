@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-09-19T23:02:16.633Z",
+  "corpusFile": "public/drugs.json",
+  "provenance": {
+    "total": 593,
+    "verified": 56,
+    "unverified": 537,
+    "unverifiedPercent": 90.6
+  },
+  "technicalDescriptions": {
+    "count": 593,
+    "medianAtesman": 1.65,
+    "meanAtesman": 5.33,
+    "medianGrade": 33.1,
+    "bands": {
+      "çok kolay": 0,
+      "kolay": 0,
+      "orta": 4,
+      "zor": 31,
+      "çok zor": 558
+    }
+  },
+  "technicalDescriptionsVerifiedSubset": {
+    "count": 56,
+    "medianAtesman": 33.86,
+    "meanAtesman": 32.48,
+    "medianGrade": 24.8,
+    "bands": {
+      "çok kolay": 0,
+      "kolay": 0,
+      "orta": 4,
+      "zor": 31,
+      "çok zor": 21
+    }
+  },
+  "interactionWarnings": {
+    "count": 1186,
+    "medianAtesman": 38.97,
+    "meanAtesman": 33.11,
+    "medianGrade": 19.98,
+    "bands": {
+      "çok kolay": 0,
+      "kolay": 3,
+      "orta": 19,
+      "zor": 617,
+      "çok zor": 547
+    }
+  },
+  "plainLanguageSummaries": {
+    "count": 56,
+    "medianAtesman": 77.15,
+    "meanAtesman": 78.48,
+    "medianGrade": 5.94,
+    "bands": {
+      "çok kolay": 7,
+      "kolay": 44,
+      "orta": 5,
+      "zor": 0,
+      "çok zor": 0
+    }
+  },
+  "worstOffenders": [
+    {
+      "id": "perindopril",
+      "atesman": 0
+    },
+    {
+      "id": "moexipril",
+      "atesman": 0
+    },
+    {
+      "id": "azilsartan",
+      "atesman": 0
+    },
+    {
+      "id": "fimasartan",
+      "atesman": 0
+    },
+    {
+      "id": "labetalol",
+      "atesman": 0
+    },
+    {
+      "id": "lercanidipine",
+      "atesman": 0
+    },
+    {
+      "id": "felodipine",
+      "atesman": 0
+    },
+    {
+      "id": "nifedipine",
+      "atesman": 0
+    },
+    {
+      "id": "nicardipine",
+      "atesman": 0
+    },
+    {
+      "id": "nimodipine",
+      "atesman": 0
+    }
+  ]
+}

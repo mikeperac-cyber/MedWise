@@ -1,0 +1,285 @@
+        <!-- Hero Wide Search with Previews -->
+        <div class="bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous space-y-5" id="monograph-column">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-mono text-xs font-semibold border border-outline-variant/50"
+            >
+              <span class="material-symbols-outlined text-[14px] fill-icon">science</span>
+              Türkiye (TİTCK) & ABD (FDA) Farmakope Veri Tabanı
+            </div>
+            <span class="font-mono text-[11px] text-outline" id="db-count-badge">
+              Yükleniyor...
+            </span>
+          </div>
+
+          <div>
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-on-surface leading-tight">
+              Egemen Klinik İlaç Ansiklopedisi
+            </h1>
+            <p class="text-sm text-on-surface-variant mt-1.5 font-normal">
+              İlacınızı önce görünüşünden tanıyın, sonra ne işe yaradığını sade Türkçe okuyun. Her kaydın başında verisinin doğrulanıp doğrulanmadığı yazar.
+            </p>
+          </div>
+
+          <!-- Wide Interactive Search Box -->
+          <div class="relative">
+            <div class="relative flex items-center">
+              <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-primary pointer-events-none">
+                <span class="material-symbols-outlined text-[24px]">search</span>
+              </span>
+              <input
+                class="w-full h-14 pl-12 pr-32 sm:pr-36 bg-surface-container-lowest border-2 border-outline-variant/70 rounded-2xl text-sm sm:text-base text-on-surface font-sans placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                id="command-search"
+                placeholder="İlaç adı, etken madde veya marka arayın (örn. Metformin, Parol, Tylenol, Zoloft, Apixaban)..."
+                type="text"
+                autocomplete="off"
+              />
+              <button
+                id="search-clear-btn"
+                class="hidden absolute right-24 sm:right-28 p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors"
+                onclick="clearSearchInput()"
+                title="Aramayı Temizle"
+              >
+                <span class="material-symbols-outlined text-[18px]">close</span>
+              </button>
+              <span
+                id="search-kbd-hint"
+                class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-lg border border-outline-variant/80 text-[10px] font-mono text-outline absolute right-24 sm:right-28 pointer-events-none bg-surface-container-low"
+              >
+                / veya ⌘K
+              </span>
+              <button
+                class="absolute right-2 px-4 py-2.5 bg-primary hover:bg-[#99000c] text-white font-semibold text-xs sm:text-sm rounded-xl transition-all shadow-sm active:scale-95 flex items-center gap-1.5"
+                onclick="executeSearch()"
+              >
+                <span>İncele</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </button>
+            </div>
+
+            <!-- Autocomplete Results Dropdown -->
+            <div id="search-dropdown" class="search-results-dropdown hidden"></div>
+          </div>
+
+          <!-- Rapid Pill Chips -->
+          <div class="flex flex-wrap items-center gap-2 pt-1" id="quick-drug-chips">
+            <span class="text-xs font-bold text-outline uppercase tracking-wider mr-1">Ön Yüklenmişler:</span>
+            <!-- Populated via main.ts -->
+          </div>
+        </div>
+
+        <!-- COMPREHENSIVE CLINICAL MONOGRAPH CARD -->
+        <article
+          class="bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous space-y-6"
+          id="monograph-card"
+        >
+          <!-- Monograph Header with NDC, ATC, TİTCK & Dosage Forms -->
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-surface-container pb-6">
+            <div class="space-y-2">
+              <div class="flex flex-wrap items-center gap-2" id="mono-badges">
+                <span
+                  class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-bold text-[11px] border border-primary-fixed-dim"
+                  id="mono-rx-type"
+                >
+                  REÇETELİ İKİLİ TEDAVİ
+                </span>
+                <span class="font-mono text-xs text-outline" id="mono-ndc">NDC 0071-0156-23</span>
+                <span class="text-xs text-outline" id="mono-atc">· ATC C10BA05</span>
+                <span class="text-xs font-mono text-outline" id="mono-titck">· TR TİTCK</span>
+              </div>
+              <h2
+                class="font-serif text-2xl sm:text-3xl font-bold text-on-surface tracking-tight"
+                id="mono-title"
+              >
+                Atorvastatin Kalsiyum & Ezetimib Kompleksi
+              </h2>
+              <p
+                class="text-xs sm:text-sm text-on-surface-variant font-normal"
+                id="mono-subtitle"
+              >
+                Müstahzar Eşdeğeri:
+                <strong class="text-on-surface">Liptruzet® / Roszet®</strong> · Film Kaplı Çift Katmanlı Oral Tablet
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                class="px-3.5 py-2 rounded-xl border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low text-on-surface font-medium text-xs flex items-center gap-1.5 transition-all shadow-2xs"
+                onclick="window.print()"
+                title="Monografı Yazdır"
+              >
+                <span class="material-symbols-outlined text-[17px] text-on-surface-variant">print</span>
+                <span>Kullanma Talimatını İndir</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Provenance banner: is this record's data real? -->
+          <div id="mono-provenance"></div>
+
+          <!-- Plain-language layer: leads the monograph, technical text folds underneath -->
+          <div id="mono-plain-summary"></div>
+
+          <!-- TR vs US Brand Equivalents Pill Cluster -->
+          <div class="p-4 rounded-2xl bg-surface-container-low/60 border border-outline-variant/50 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-serif font-bold text-on-surface flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-primary">public</span>
+                Türkiye (TR) & Amerika Birleşik Devletleri (US) Piyasa Biyoeşdeğerleri
+              </span>
+              <span class="text-[10px] font-mono text-outline">Karşılıklı Ruhsatlı Müstahzarlar</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div class="p-2.5 rounded-xl bg-white border border-outline-variant/40 space-y-1">
+                <div class="text-[11px] font-mono font-bold text-primary flex items-center gap-1">
+                  <span>🇹🇷 TÜRKİYE TİTCK MARKALARI</span>
+                </div>
+                <div class="text-xs text-on-surface flex flex-wrap gap-1.5" id="mono-brands-tr">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+              <div class="p-2.5 rounded-xl bg-white border border-outline-variant/40 space-y-1">
+                <div class="text-[11px] font-mono font-bold text-tertiary flex items-center gap-1">
+                  <span>🇺🇸 ABD FDA / NDC MARKALARI</span>
+                </div>
+                <div class="text-xs text-on-surface flex flex-wrap gap-1.5" id="mono-brands-us">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Molecular Structure Diagram & Pill Silhouette Previews -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-5 rounded-2xl bg-surface-container-low border border-outline-variant/60">
+            <!-- Molecular Bond Diagram (SVG) -->
+            <div class="md:col-span-7 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-outline uppercase tracking-wider">
+                  Moleküler İskelet Topolojisi
+                </span>
+                <span class="font-mono text-[10px] text-primary font-bold" id="mono-formula">C33H35FN2O5</span>
+              </div>
+              <div
+                class="h-32 bg-white rounded-xl border border-outline-variant/50 p-2 flex items-center justify-center relative overflow-hidden molecule-schematic"
+                id="mono-svg-container"
+              >
+                <!-- SVG rendered via main.ts -->
+              </div>
+              <span class="text-[9px] font-mono text-outline block text-right" id="mono-chirality">
+                İkili Enantiyomer Kiralite: (3R, 5R)
+              </span>
+            </div>
+
+            <!-- Tablet Silhouette -->
+            <div class="md:col-span-5 space-y-2 flex flex-col justify-between">
+              <span class="text-[11px] font-bold text-outline uppercase tracking-wider">
+                Fiziksel Tablet Geometrisi
+              </span>
+              <div
+                class="h-32 bg-white rounded-xl border border-outline-variant/50 p-3 flex flex-col items-center justify-center space-y-2"
+              >
+                <div
+                  class="w-28 h-11 rounded-full border-2 border-outline-variant flex items-center overflow-hidden shadow-xs"
+                  id="mono-pill-graphic"
+                >
+                  <div
+                    class="w-1/2 h-full bg-primary-fixed flex items-center justify-center text-[9px] font-mono font-bold text-primary"
+                    id="mono-pill-left"
+                  >
+                    ATOR 20
+                  </div>
+                  <div
+                    class="w-1/2 h-full bg-surface-container-highest flex items-center justify-center text-[9px] font-mono font-bold text-on-surface"
+                    id="mono-pill-right"
+                  >
+                    EZET 10
+                  </div>
+                </div>
+                <div class="text-center">
+                  <div class="text-[11px] font-bold text-on-surface" id="mono-pill-shape">
+                    Bikonveks Oval Tablet
+                  </div>
+                  <div class="text-[10px] text-outline font-mono" id="mono-pill-imprint">
+                    14.2mm × 7.1mm · Baskılı 'AE'
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pharmacokinetics Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <div class="p-3.5 rounded-2xl bg-surface-container-low border border-outline-variant/60 space-y-1">
+              <div class="flex items-center gap-1.5 text-primary text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+                <span>Plazma T_max & t_1/2</span>
+              </div>
+              <p class="font-mono text-xs font-bold text-on-surface" id="mono-tmax">
+                1.5 sa · 14.0 sa t_1/2
+              </p>
+              <p class="text-[11px] text-on-surface-variant" id="mono-bioavailability">
+                Aktif beta-oksidasyon metabolitleri etkiyi 20-30 saate uzatır.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-surface-container-low border border-outline-variant/60 space-y-1">
+              <div class="flex items-center gap-1.5 text-primary text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px]">alt_route</span>
+                <span>Hepatik CYP Yolağı</span>
+              </div>
+              <p class="font-mono text-xs font-bold text-on-surface" id="mono-cyp-title">
+                Yoğun İlk Geçiş Etkisi
+              </p>
+              <p class="text-[11px] text-on-surface-variant" id="mono-cyp-desc">
+                Sitokrom P450 3A4 ve organik anyon taşıyıcısı OATP1B1 için substrattır.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-surface-container-low border border-outline-variant/60 space-y-1">
+              <div class="flex items-center gap-1.5 text-primary text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px]">donut_large</span>
+                <span>Hedef Reseptör & Klerens</span>
+              </div>
+              <p class="font-mono text-xs font-bold text-on-surface" id="mono-clearance-title">
+                Hepatik & Fekal Atılım
+              </p>
+              <p class="text-[11px] text-on-surface-variant" id="mono-clearance-desc">
+                Biliyer/Feçes (%98), Renal (&lt;%2). İntestinal NPC1L1 blokajı.
+              </p>
+            </div>
+          </div>
+
+          <!-- Critical Biochemical Interactions -->
+          <div class="space-y-3 pt-2">
+            <span class="text-xs font-bold text-outline tracking-wider uppercase">
+              Kontrendikasyonlar, Toksisite & Besin Etkileşimleri
+            </span>
+            <div class="space-y-3" id="mono-interactions-list">
+              <!-- Rendered via main.ts -->
+            </div>
+          </div>
+
+          <!-- Action Bar -->
+          <div class="pt-4 border-t border-surface-container flex flex-wrap items-center justify-between gap-4">
+            <div class="text-[11px] text-outline flex items-center gap-1.5 font-mono">
+              <span class="material-symbols-outlined text-[15px] text-primary">verified</span>
+              Hakemli Klinik Veri: DailyMed & TİTCK Farmakope Arşivi
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                class="px-4 py-2.5 rounded-xl border border-outline-variant hover:border-primary hover:text-primary font-semibold text-xs transition-all flex items-center gap-1.5"
+                onclick="sendCurrentDrugToInteractions()"
+              >
+                <span class="material-symbols-outlined text-[17px]">sync_alt</span>
+                <span>Etkileşim Motoruna Aktar</span>
+              </button>
+              <button
+                class="px-5 py-2.5 bg-primary hover:bg-[#99000c] text-white rounded-xl font-semibold text-xs transition-all flex items-center gap-2 shadow-sm active:scale-95"
+                id="add-protocol-btn"
+                onclick="addCurrentDrugToCockpit()"
+              >
+                <span class="material-symbols-outlined text-[17px]">alarm_add</span>
+                <span>Doz Kokpitine Ekle</span>
+              </button>
+            </div>
+          </div>
+        </article>

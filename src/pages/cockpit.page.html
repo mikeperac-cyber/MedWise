@@ -1,0 +1,350 @@
+        <!-- Hero Header for Cockpit -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary font-mono text-xs font-semibold border border-outline-variant/50 mb-2">
+              <span class="material-symbols-outlined text-[14px]">medication</span>
+              Klinik Protokol Yönetimi & Biyoritim Senkronizasyonu
+            </div>
+            <h1 class="font-serif text-2xl sm:text-4xl font-bold tracking-tight text-on-surface">
+              Doz Kokpiti & Tedavi Uyum Merkezi
+            </h1>
+            <p class="text-xs sm:text-sm text-on-surface-variant mt-1 max-w-3xl">
+              Günlük ilaç protokolünüzü takip edin, kronobiyolojik saatlere göre serum konsantrasyon zirvelerini izleyin ve hekiminiz için ilaç karnesi oluşturun.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button
+              class="px-4 py-2.5 rounded-xl border border-outline-variant hover:border-primary-fixed-dim hover:bg-surface-container-low text-on-surface font-medium text-xs flex items-center gap-1.5 transition-all shadow-2xs"
+              onclick="window.print()"
+              title="Hasta İlaç Karnesini Yazdır"
+            >
+              <span class="material-symbols-outlined text-[17px] text-primary">print</span>
+              <span>İlaç Karnesini Yazdır</span>
+            </button>
+            <button
+              class="px-4 py-2.5 rounded-xl bg-primary hover:bg-[#99000c] text-white font-semibold text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
+              onclick="openCustomDoseModal()"
+            >
+              <span class="material-symbols-outlined text-[17px]">alarm_add</span>
+              <span>Özel Doz Ekle</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2-Column Bento Layout for Cockpit -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Left Column (5 Cols): Adherence Ring & Slots List -->
+          <div class="lg:col-span-5 space-y-6" id="cockpit-column">
+            <!-- Adherence Ring & Circular Dose Widget -->
+            <div class="bg-white rounded-3xl border border-outline-variant/70 p-6 shadow-luminous space-y-6">
+              <div class="flex items-center justify-between border-b border-surface-container pb-4">
+                <div>
+                  <h2 class="font-serif text-xl font-bold text-on-surface">Uyum Göstergesi</h2>
+                  <p class="text-xs text-on-surface-variant font-mono" id="current-date-display">
+                    Bugün, 24 Ekim 2024
+                  </p>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-surface-container-high text-primary text-[10px] font-mono font-bold tracking-wider uppercase border border-primary-fixed-dim"
+                >
+                  Aktif
+                </span>
+              </div>
+
+              <!-- Adherence Donut Ring + Quick Stats -->
+              <div
+                class="flex items-center gap-5 p-4 rounded-2xl bg-surface-container-low border border-outline-variant/60"
+              >
+                <div class="relative w-20 h-20 flex-shrink-0 flex items-center justify-center">
+                  <svg class="w-20 h-20 -rotate-90 transform" viewBox="0 0 36 36">
+                    <path
+                      class="text-surface-container-highest"
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                    ></path>
+                    <path
+                      class="text-primary"
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      id="svg-adherence-ring"
+                      stroke="currentColor"
+                      stroke-dasharray="67, 100"
+                      stroke-linecap="round"
+                      stroke-width="3.5"
+                    ></path>
+                  </svg>
+                  <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span class="font-mono text-base font-bold text-on-surface" id="donut-pct">%67</span>
+                    <span class="text-[9px] uppercase tracking-wider text-outline">Alındı</span>
+                  </div>
+                </div>
+                <div class="space-y-1 text-xs">
+                  <div class="font-serif font-bold text-on-surface text-sm">Günlük Tedavi Hedefi</div>
+                  <div class="text-on-surface-variant" id="adherence-status-text">
+                    <span class="font-mono font-semibold text-primary" id="doses-taken-count">2</span>
+                    dozdan <span class="font-mono font-semibold" id="doses-total-count">3</span>'ü doğrulandı
+                  </div>
+                  <div class="text-[11px] text-outline font-medium" id="next-dose-hint">
+                    Sıradaki: 21:00 Gece Dozu
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Chronological Protocol Slots -->
+              <div class="space-y-3">
+                <div class="flex items-center justify-between text-xs font-bold text-outline uppercase tracking-wider">
+                  <span>Planlanmış Dozlar</span>
+                  <span class="font-mono text-[11px]" id="slot-count-badge">3 Planlandı</span>
+                </div>
+
+                <!-- Dynamic Tracker Slots Container -->
+                <div class="space-y-3" id="tracker-slots">
+                  <!-- Rendered via main.ts -->
+                </div>
+              </div>
+
+              <!-- Rapid Quick-Log Pill Triggers -->
+              <div class="pt-4 border-t border-surface-container space-y-2.5">
+                <span class="text-[11px] font-bold text-outline uppercase tracking-wider">
+                  Gerektiğinde (PRN) Hızlı Kayıt
+                </span>
+                <div class="grid grid-cols-2 gap-2">
+                  <button
+                    class="px-2.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-medium border border-outline-variant/50 flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                    onclick="quickLogPRN('Sıvı Alımı (+250ml)', 'water_drop', '250ml', true)"
+                  >
+                    <span class="material-symbols-outlined text-[16px] text-primary">water_drop</span>
+                    <span>Sıvı Alımı</span>
+                  </button>
+                  <button
+                    class="px-2.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-medium border border-outline-variant/50 flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                    onclick="quickLogPRN('Melatonin', 'bedtime', '1mg')"
+                  >
+                    <span class="material-symbols-outlined text-[16px] text-secondary">bedtime</span>
+                    <span>Uyku Desteği</span>
+                  </button>
+                  <button
+                    class="px-2.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-medium border border-outline-variant/50 flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                    onclick="quickLogPRN('Elektrolit Solüsyonu', 'bolt', '200ml')"
+                  >
+                    <span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
+                    <span>Elektrolit</span>
+                  </button>
+                  <button
+                    class="px-2.5 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-medium border border-outline-variant/50 flex items-center justify-center gap-1.5 transition-all active:scale-95"
+                    onclick="quickLogPRN('D3 Vitamini & K2', 'wb_sunny', '1000 IU')"
+                  >
+                    <span class="material-symbols-outlined text-[16px] text-amber-600">wb_sunny</span>
+                    <span>D3 Vitamini</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hydration Widget & Streak Card -->
+            <div class="bg-white rounded-3xl border border-outline-variant/70 p-5 shadow-luminous space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[18px]">bolt</span>
+                  </div>
+                  <div>
+                    <div class="text-xs font-serif font-bold text-on-surface">Tedavi Disiplini</div>
+                    <div class="text-[10px] text-outline font-mono" id="streak-counter-display">
+                      14 ARDIŞIK GÜN
+                    </div>
+                  </div>
+                </div>
+                <span
+                  class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-mono text-[10px] font-bold"
+                  id="daily-completion-badge"
+                >
+                  %100 Hedef
+                </span>
+              </div>
+
+              <!-- Hydration Bar -->
+              <div class="space-y-2 text-xs">
+                <div class="flex justify-between items-center text-[11px]">
+                  <span class="text-on-surface flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[15px] text-primary">water_drop</span>
+                    <span id="hydration-text">Sıvı Alımı: 2.1L / 2.5L</span>
+                  </span>
+                  <div class="flex items-center gap-2">
+                    <button
+                      class="px-2 py-0.5 bg-primary-fixed hover:bg-primary-fixed-dim text-primary text-[10px] font-bold rounded transition-colors active:scale-95"
+                      onclick="addHydration(250)"
+                    >
+                      +250ml
+                    </button>
+                    <span class="font-mono text-primary font-semibold" id="hydration-pct">%84</span>
+                  </div>
+                </div>
+                <div class="w-full bg-surface-container rounded-full h-2 overflow-hidden">
+                  <div
+                    class="bg-primary h-2 rounded-full transition-all duration-500"
+                    id="hydration-bar"
+                    style="width: 84%"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Daily Motivational Quote -->
+              <p class="text-xs text-on-surface-variant italic leading-relaxed pt-2 border-t border-surface-container" id="daily-motivation-quote">
+                "İlaçlar doğru zamanda ve doğru dozda alındığında birer şifadır; disiplin ise sağlığınızın en sadık bekçisidir."
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Column (7 Cols): 24-Hour Circadian Timeline & Clinical Passport -->
+          <div class="lg:col-span-7 space-y-6">
+            <!-- 24-Hour Clinical Timeline & Serum Peaks Card -->
+            <div class="bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous space-y-5">
+              <div class="flex items-center justify-between border-b border-surface-container pb-4">
+                <div>
+                  <h3 class="font-serif text-xl font-bold text-on-surface">24-Saatlik Farmakokinetik Doz Dağılımı</h3>
+                  <p class="text-xs text-on-surface-variant">
+                    Sirkadiyen biyolojik ritim ile uyumlu sabah, öğle, akşam ve gece tedavi pencereleri.
+                  </p>
+                </div>
+                <span class="text-[10px] font-mono text-primary bg-surface-container px-2.5 py-1 rounded-full border border-primary-fixed-dim">
+                  Biyoritim Uyumu
+                </span>
+              </div>
+
+              <!-- Time Windows Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                <!-- Window 1: Morning -->
+                <div class="p-4 rounded-2xl bg-surface-container-low/70 border border-outline-variant/60 space-y-2">
+                  <div class="flex items-center justify-between text-xs font-bold text-primary">
+                    <span class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[16px]">wb_sunny</span>
+                      Sabah
+                    </span>
+                    <span class="font-mono text-[10px]">07:00 - 10:00</span>
+                  </div>
+                  <div class="text-[11px] text-on-surface-variant leading-snug">
+                    <strong class="text-on-surface block mb-1">RAAS & Kortizol</strong>
+                    Antihipertansifler, tiroid hormonları (aç karna), diüretikler.
+                  </div>
+                </div>
+
+                <!-- Window 2: Noon -->
+                <div class="p-4 rounded-2xl bg-surface-container-low/70 border border-outline-variant/60 space-y-2">
+                  <div class="flex items-center justify-between text-xs font-bold text-amber-600">
+                    <span class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[16px]">light_mode</span>
+                      Öğle
+                    </span>
+                    <span class="font-mono text-[10px]">12:00 - 14:00</span>
+                  </div>
+                  <div class="text-[11px] text-on-surface-variant leading-snug">
+                    <strong class="text-on-surface block mb-1">Metabolik Zirve</strong>
+                    Antidiyabetikler, D vitamini, omega-3, multivitamin kompleksleri.
+                  </div>
+                </div>
+
+                <!-- Window 3: Evening -->
+                <div class="p-4 rounded-2xl bg-surface-container-low/70 border border-outline-variant/60 space-y-2">
+                  <div class="flex items-center justify-between text-xs font-bold text-tertiary">
+                    <span class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[16px]">wb_twilight</span>
+                      Akşam
+                    </span>
+                    <span class="font-mono text-[10px]">18:00 - 20:30</span>
+                  </div>
+                  <div class="text-[11px] text-on-surface-variant leading-snug">
+                    <strong class="text-on-surface block mb-1">Lipid & Asit</strong>
+                    Statinler, yağda çözünen DOAC'lar, osteoartrit NSAİİ takviyeleri.
+                  </div>
+                </div>
+
+                <!-- Window 4: Night -->
+                <div class="p-4 rounded-2xl bg-surface-container-low/70 border border-outline-variant/60 space-y-2">
+                  <div class="flex items-center justify-between text-xs font-bold text-secondary">
+                    <span class="flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[16px]">bedtime</span>
+                      Gece
+                    </span>
+                    <span class="font-mono text-[10px]">21:30 - 23:30</span>
+                  </div>
+                  <div class="text-[11px] text-on-surface-variant leading-snug">
+                    <strong class="text-on-surface block mb-1">Melatonin & Karaciğer</strong>
+                    Kısa yarı ömürlü statinler, astım inhibitörleri, uyku destekleri.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Direct Cross-Navigation Cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <a
+                  href="#/etkilesim"
+                  class="p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 transition-all flex items-center justify-between group"
+                >
+                  <div class="space-y-0.5">
+                    <div class="text-xs font-bold text-primary flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-[18px]">sync_alt</span>
+                      Çapraz İlaç Etkileşim Kontrolü
+                    </div>
+                    <p class="text-[11px] text-on-surface-variant">
+                      Kayıtlı dozlarınız arasındaki CYP450 ve kanama risklerini test edin.
+                    </p>
+                  </div>
+                  <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                </a>
+
+                <a
+                  href="#/ansiklopedi"
+                  class="p-4 rounded-2xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 transition-all flex items-center justify-between group"
+                >
+                  <div class="space-y-0.5">
+                    <div class="text-xs font-bold text-on-surface flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-[18px] text-primary">menu_book</span>
+                      İlaç Ansiklopedisinde Ara
+                    </div>
+                    <p class="text-[11px] text-on-surface-variant">
+                      Etken maddeler, moleküler yapılar ve TİTCK/FDA muadillerini keşfedin.
+                    </p>
+                  </div>
+                  <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Hasta İlaç Karnesi (Clinical Medication Passport) Card -->
+            <div class="bg-white rounded-3xl border border-outline-variant/70 p-6 sm:p-8 shadow-luminous space-y-4">
+              <div class="flex items-center justify-between border-b border-surface-container pb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[22px]">badge</span>
+                  </div>
+                  <div>
+                    <h3 class="font-serif text-lg font-bold text-on-surface">Hasta İlaç Karnesi (Klinik Özet)</h3>
+                    <p class="text-xs text-on-surface-variant font-mono">
+                      Hekim ve Eczacı Konsültasyonları İçin Çıktı Formatı
+                    </p>
+                  </div>
+                </div>
+                <button
+                  class="px-3 py-1.5 rounded-xl border border-outline-variant hover:bg-surface-container text-xs font-semibold flex items-center gap-1.5"
+                  onclick="exportData()"
+                >
+                  <span class="material-symbols-outlined text-[16px]">download</span>
+                  <span>JSON İndir</span>
+                </button>
+              </div>
+
+              <div class="p-4 bg-surface-container-low rounded-2xl border border-outline-variant/50 space-y-3 text-xs text-on-surface-variant">
+                <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono border-b border-outline-variant/40 pb-2">
+                  <span><strong>Güvenlik Modeli:</strong> %100 İstemci Taraflı Yerel Depolama (Sıfır Bulut Sızıntısı)</span>
+                  <span id="sync-status-indicator">Senkronizasyon: Çevrimdışı Hazır</span>
+                </div>
+                <p class="leading-relaxed">
+                  Bu belge, hastanın aktif olarak sürdürdüğü farmakoterapi rejimini, sirkadiyen doz saatlerini ve günlük uyum oranını özetler. Hekiminizin polifarmasi incelemelerinde ve reçete yenilemelerinde kullanılabilir.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,132 @@
+<div
+  id="byok-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden"
+  onclick="if (event.target === this) closeByokModal();"
+>
+  <div
+    class="bg-white rounded-3xl border border-outline-variant max-w-md w-full p-6 shadow-2xl space-y-4 animate-fadeIn"
+  >
+    <div class="flex items-center justify-between border-b border-surface-container pb-3">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[22px]">vpn_key</span>
+        <h3 class="font-serif text-lg font-bold text-on-surface">
+          BYOK Yapay Zeka Anahtar Yönetimi
+        </h3>
+      </div>
+      <button class="p-1 rounded-lg text-outline hover:text-on-surface" onclick="closeByokModal()">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <p class="text-xs text-on-surface-variant leading-relaxed">
+      Google Gemini, OpenAI veya Claude API anahtarınızı girerek canlı farmakoterapi analizleri
+      alabilirsiniz. Anahtarınız sunuculara iletilmez, yalnızca tarayıcınızın yerel depolama
+      alanında tutulur.
+    </p>
+
+    <div class="space-y-3">
+      <div>
+        <label class="block text-xs font-bold text-on-surface mb-1">Yapay Zeka Sağlayıcısı</label>
+        <select
+          id="modal-provider-select"
+          class="w-full p-2.5 rounded-xl border border-outline-variant text-xs bg-white focus:border-primary focus:ring-1 focus:ring-primary"
+        >
+          <option value="gemini">Google Gemini (Gemini 1.5 Flash / 2.0)</option>
+          <option value="gpt4o">OpenAI (GPT-4o / GPT-4o-mini)</option>
+          <option value="claude">Anthropic Claude (Claude 3.5 Sonnet)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold text-on-surface mb-1">API Anahtarı</label>
+        <input
+          type="password"
+          id="modal-api-key-input"
+          placeholder="AIzaSy... veya sk-..."
+          class="w-full p-2.5 rounded-xl border border-outline-variant text-xs focus:border-primary focus:ring-1 focus:ring-primary font-mono"
+        />
+        <p class="text-[10px] text-outline mt-1">
+          Anahtar girilmezse yapay zeka paneli çalışmaz. MedWise'ın yerel bir yedek motoru yoktur; size hazır metni gerçek analiz gibi göstermeyiz.
+        </p>
+      </div>
+    </div>
+
+    <div class="pt-3 border-t border-surface-container flex items-center justify-between gap-3">
+      <button
+        class="px-3 py-2 text-xs text-error font-medium hover:underline"
+        onclick="clearApiKey()"
+      >
+        Anahtarı Temizle
+      </button>
+      <div class="flex items-center gap-2">
+        <button
+          class="px-4 py-2 rounded-xl border border-outline-variant text-xs font-medium hover:bg-surface-container-low"
+          onclick="closeByokModal()"
+        >
+          İptal
+        </button>
+        <button
+          class="px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#99000c] shadow-sm"
+          onclick="saveApiKey()"
+        >
+          Kaydet & Etkinleştir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- MODAL: KLİNİK SORUMLULUK REDDİ BİLGİLENDİRMESİ                            -->
+<!-- ========================================================================= -->
+<div
+  id="disclaimer-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden"
+  onclick="if (event.target === this) closeDisclaimerModal();"
+>
+  <div
+    class="bg-white rounded-3xl border border-outline-variant max-w-md w-full p-6 shadow-2xl space-y-4 animate-fadeIn"
+  >
+    <div class="flex items-center justify-between border-b border-surface-container pb-3">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+        <h3 class="font-serif text-lg font-bold text-on-surface">Klinik Sorumluluk Reddi</h3>
+      </div>
+      <button
+        class="p-1 rounded-lg text-outline hover:text-on-surface"
+        onclick="closeDisclaimerModal()"
+      >
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <p class="text-xs text-on-surface-variant leading-relaxed">
+      MedWise, sağlık profesyonelleri ve araştırmacılar için tasarlanmış bağımsız bir klinik
+      farmakoterapi karar destek ve doz takip aracıdır. Doğrudan tıbbi teşhis koymaz veya kişisel
+      tedavi reçetesi yerine geçmez.
+    </p>
+
+    <p class="text-xs text-on-surface-variant leading-relaxed">
+      Tüm etken maddeler, sirkadiyen dozajlar ve ilaç etkileşimleri DailyMed (FDA) ve TİTCK
+      farmakope kayıtlarına dayandırılmıştır. Herhangi bir ilaç ve dozaj değişikliği için mutlaka
+      hekiminize veya yetkili eczacınıza danışınız.
+    </p>
+
+    <div class="pt-3 border-t border-surface-container flex justify-end">
+      <button
+        type="button"
+        class="px-5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:bg-[#99000c] shadow-sm transition-all active:scale-95"
+        onclick="closeDisclaimerModal()"
+      >
+        Anladım ve Kabul Ediyorum
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div
+  id="toast-container"
+  class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm pointer-events-none"
+  aria-live="polite"
+></div>

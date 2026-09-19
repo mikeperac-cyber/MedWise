@@ -1,0 +1,572 @@
+[
+  {
+    "id": "atorvastatin",
+    "name": "Atorvastatin Kalsiyum & Ezetimib",
+    "genericNameTR": "Atorvastatin + Ezetimib",
+    "genericNameUS": "Atorvastatin Calcium + Ezetimibe",
+    "brandTR": ["Liptruzet", "Lipitor", "Kolestor", "Ator", "Ateroz"],
+    "brandUS": ["Lipitor", "Liptruzet", "Roszet", "Caduet"],
+    "category": "Kardiyovasküler / Hipolipidemik",
+    "rxType": "REÇETELİ İKİLİ TEDAVİ",
+    "atc": "C10BA05",
+    "ndc": "0071-0156-23",
+    "titck": "TR-RUH-2018/451",
+    "description": "HMG-CoA redüktaz enzim blokajı ve intestinal NPC1L1 kolesterol taşıyıcı inhibisyonu ile primer hiperlipidemi ve kardiyovasküler risk azaltımında sinerjistik etki sağlar.",
+    "dosageForms": "Film Kaplı Çift Katmanlı Oral Tablet (10mg/10mg, 20mg/10mg, 40mg/10mg)",
+    "formula": "C33H35FN2O5 · C24H21F2NO3",
+    "chirality": "İkili Enantiyomer Kiralite: (3R, 5R)",
+    "pillGeometry": {
+      "shape": "Bikonveks Oval Tablet",
+      "dimensions": "14.2mm × 7.1mm",
+      "imprint": "AE 20/10",
+      "colorLeft": "#ffdad5",
+      "colorRight": "#fddbd6",
+      "textLeft": "ATOR 20",
+      "textRight": "EZET 10"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "atorvastatin"
+    },
+    "pharmacokinetics": {
+      "tMax": "1.5 sa (Plazma pik)",
+      "halfLife": "14.0 sa (Aktif metabolitlerle 20-30 sa)",
+      "bioavailability": "%14 (Yoğun karaciğer ilk geçiş etkisi)",
+      "metabolismPathway": "Sitokrom P450 3A4 (CYP3A4) ve OATP1B1 taşıyıcısı",
+      "clearance": "Biliyer / Feçes (%98), Renal (<%2)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Güçlü CYP3A4 İnhibitörleri (Klaritromisin, Ketokonazol, İtrakonazol)",
+        "badge": "Rabdomiyoliz Riski",
+        "description": "Eşzamanlı kullanım atorvastatin sistemik AUC maruziyetini 4.5 kata kadar artırarak ağır miyopati, yüksek kreatin kinaz (CK) ve akut ikincil böbrek yetmezliğini tetikleyebilir."
+      },
+      {
+        "severity": "warning",
+        "title": "Greyfurt Suyu Eşzamanlı Tüketimi (> 1.2 Litre / Gün)",
+        "badge": "Besin Etkileşimi",
+        "description": "Bağırsaktaki furanokumarinler enterosit CYP3A4 enzimini geri dönüşümsüz inhibe ederek öngörülemeyen plazma ilaç piklerine yol açar. Tüketimi < 200mL ile sınırlayın."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "20:30 (Akşam Yemeği Sonrası)",
+      "rationale": "HMG-CoA redüktaz enzim aktivitesi gece 00:00 – 04:00 arasında sirkadiyen pik yapar. Akşam alımı kolesterol biyosentezini en yüksek düzeyde baskılar."
+    },
+    "defaultDose": "20mg / 10mg",
+    "commonSchedule": "Günde 1 kez (Akşam)"
+  },
+  {
+    "id": "metformin",
+    "name": "Metformin Hidroklorür (XR/Uzatılmış Salımlı)",
+    "genericNameTR": "Metformin Hidroklorür",
+    "genericNameUS": "Metformin Hydrochloride Extended-Release",
+    "brandTR": ["Glucophage", "Matof", "Diaformin", "Glifor", "Gluformin"],
+    "brandUS": ["Glucophage XR", "Fortamet", "Glumetza", "Riomet"],
+    "category": "Endokrinoloji / Oral Antidiyabetik (Biguanid)",
+    "rxType": "REÇETELİ MONOTERAPİ",
+    "atc": "A10BA02",
+    "ndc": "0087-6060-05",
+    "titck": "TR-RUH-2015/882",
+    "description": "Hepatik glukoneogenezi baskılar, periferik insülin duyarlılığını artırır ve intestinal glukoz emilimini azaltır. Tip 2 diyabette birinci basamak tedavidir.",
+    "dosageForms": "Uzatılmış Salımlı Tablet (500mg, 850mg, 1000mg)",
+    "formula": "C4H11N5 · HCl",
+    "chirality": "Akiral Düzlemsel Simetri",
+    "pillGeometry": {
+      "shape": "Uzatılmış Kapsül Şeklinde Tablet",
+      "dimensions": "19.0mm × 8.5mm",
+      "imprint": "M 500 XR",
+      "colorLeft": "#ffffff",
+      "colorRight": "#f3f4f6",
+      "textLeft": "MET",
+      "textRight": "500 XR"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "metformin"
+    },
+    "pharmacokinetics": {
+      "tMax": "7.0 sa (XR formülasyonu ile kontrollü salım)",
+      "halfLife": "6.2 sa (Plazma)",
+      "bioavailability": "%50 - %60 (Açlık durumunda)",
+      "metabolismPathway": "Karaciğerde metabolize olmaz, OCT1/OCT2 ile taşınır",
+      "clearance": "Tamamen böbreklerden glomerüler filtrasyon ile değişmeden atılır (%90)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "İyotlu Radyokontrast Maddeler & Akut Böbrek Hasarı",
+        "badge": "Laktik Asidoz Tehlikesi",
+        "description": "Kontrastlı görüntüleme işlemlerinden 48 saat önce kesilmeli ve eGFR normale dönene kadar yeniden başlanmamalıdır."
+      },
+      {
+        "severity": "warning",
+        "title": "Aşırı Alkol Tüketimi (Akut/Kronik)",
+        "badge": "Metabolik Risk",
+        "description": "Alkol, laktat oksidasyonunu bloke ederek ölümcül laktik asidoz riskini belirgin şekilde artırır."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "19:00 (Akşam Yemeği Ortasında/Sonunda)",
+      "rationale": "Yemekle birlikte alınması gastrointestinal intoleransı (bulantı, kramp) önler ve gece boyu karaciğerin kontrolsüz glukoz üretimini dengeler."
+    },
+    "defaultDose": "500mg XR",
+    "commonSchedule": "Günde 1-2 kez (Yemekle)"
+  },
+  {
+    "id": "amoxicillin",
+    "name": "Amoksisilin & Klavulanik Asit",
+    "genericNameTR": "Amoksisilin Trihidrat + Potasyum Klavulanat",
+    "genericNameUS": "Amoxicillin + Clavulanate Potassium",
+    "brandTR": ["Augmentin", "Klamoks", "Amoklavin", "Klavunat", "Bioment"],
+    "brandUS": ["Augmentin", "Augmentin XR", "Amoclan"],
+    "category": "Enfeksiyon Hastalıkları / Beta-Laktam Antibiyotik",
+    "rxType": "REÇETELİ KOMBİNE ANTİBİYOTİK",
+    "atc": "J01CR02",
+    "ndc": "43598-022-52",
+    "titck": "TR-RUH-2012/104",
+    "description": "Geniş spektrumlu bakterisid penisilin olan amoksisilin ile beta-laktamaz enzimlerini geri dönüşümsüz inaktive eden klavulanik asidin güçlü sinerjistik kombinasyonudur.",
+    "dosageForms": "Film Tablet (625mg, 1000mg BID), Oral Süspansiyon",
+    "formula": "C16H19N3O5S · C8H9NO5",
+    "chirality": "2S, 5R, 6R Stereomerik Konfigürasyon",
+    "pillGeometry": {
+      "shape": "Büyük Oval Çentikli Tablet",
+      "dimensions": "21.5mm × 9.8mm",
+      "imprint": "AC 875/125",
+      "colorLeft": "#fef3c7",
+      "colorRight": "#fffbeb",
+      "textLeft": "AUG",
+      "textRight": "1000"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "amoxicillin"
+    },
+    "pharmacokinetics": {
+      "tMax": "1.2 sa",
+      "halfLife": "1.0 - 1.3 sa",
+      "bioavailability": "%90 (Mide asidine son derece dayanıklı)",
+      "metabolismPathway": "Amoksisilin kısmen (%10-25) penisilloik aside metabolize olur",
+      "clearance": "Böbrekler yoluyla aktif tübüler sekresyonla atılır (%60-70)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Metotreksat ile Eşzamanlı Kullanım",
+        "badge": "Kemik İliği Toksisitesi",
+        "description": "Penisilinler metotreksatın renal tübüler klerensini azaltarak toksik serum seviyelerine ve pansitopeniye neden olabilir."
+      },
+      {
+        "severity": "warning",
+        "title": "Oral Antikoagülanlar (Varfarin)",
+        "badge": "Kanama Riski",
+        "description": "Bağırsak florasındaki K vitamini sentezleyen bakterileri baskılayarak INR düzeylerini öngörülemeyen şekilde yükseltebilir."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "08:00 & 20:00 (Yemek Başlangıcında)",
+      "rationale": "Klavulanat emilimi yemek başlangıcında maksimuma ulaşır ve gastrointestinal yan etkiler (ishal, karın ağrısı) minimize edilir. 12 saatlik eşit aralıklar MIC düzeyini korur."
+    },
+    "defaultDose": "1000mg BID",
+    "commonSchedule": "Günde 2 kez (12 saatte bir)"
+  },
+  {
+    "id": "ibuprofen",
+    "name": "İbuprofen",
+    "genericNameTR": "İbuprofen",
+    "genericNameUS": "Ibuprofen",
+    "brandTR": ["Dolven", "İbufen", "Brufen", "Artril", "Pedifen"],
+    "brandUS": ["Advil", "Motrin", "Midol Liquid Gels", "Nuprin"],
+    "category": "Romatoloji & Analjezi / NSAİİ (Propionik Asit Türevi)",
+    "rxType": "REÇETESİZ / REÇETELİ (OTC / Rx)",
+    "atc": "M01AE01",
+    "ndc": "0573-0164-40",
+    "titck": "TR-RUH-2010/312",
+    "description": "Siklooksijenaz-1 (COX-1) ve Siklooksijenaz-2 (COX-2) enzimlerini non-selektif inhibe ederek prostaglandin sentezini durdurur; analjezik, antipiretik ve antiinflamatuar etki gösterir.",
+    "dosageForms": "Draje, Film Tablet, Sıvı Jel Kapsül (200mg, 400mg, 600mg, 800mg)",
+    "formula": "C13H18O2",
+    "chirality": "(S)-(+)-İbuprofen aktif formudur",
+    "pillGeometry": {
+      "shape": "Yuvarlak / Disk Draje",
+      "dimensions": "11.0mm Çap",
+      "imprint": "ADVIL 200",
+      "colorLeft": "#f87171",
+      "colorRight": "#ef4444",
+      "textLeft": "IBU",
+      "textRight": "400"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "ibuprofen"
+    },
+    "pharmacokinetics": {
+      "tMax": "1.0 - 2.0 sa (Yemekle gecikebilir)",
+      "halfLife": "1.8 - 2.0 sa",
+      "bioavailability": "%80+",
+      "metabolismPathway": "Karaciğer CYP2C9 aracılığıyla hidroksilasyon ve karboksilasyon",
+      "clearance": "Metabolitler halinde böbreklerden atılır (%90+)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Aspirin (Kardiyoprotektif Düşük Doz) Antagonizmi",
+        "badge": "Kardiyovasküler Risk",
+        "description": "İbuprofen, aspirinin trombosit COX-1 reseptörüne bağlanmasını sterik olarak engelleyerek antitrombositer koruyucu etkisini nötralize eder. Aspirinden en az 2 saat sonra alınmalıdır."
+      },
+      {
+        "severity": "warning",
+        "title": "ACE İnhibitörleri & ARB'ler (Böbrek Hemodinamiği)",
+        "badge": "Renal Yetmezlik Riski",
+        "description": "Renal vazodilatör prostaglandinleri baskılayarak glomerüler filtrasyon hızını düşürür ve hipertansiyon kontrolünü bozar."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "Tok Karnına / Bol Su İle",
+      "rationale": "Mide koruyucu mukus bariyerini korumak için mutlaka yemeklerden sonra veya süt/yoğurt eşliğinde bol suyla tüketilmelidir."
+    },
+    "defaultDose": "400mg PRN",
+    "commonSchedule": "Günde 1-3 kez (İhtiyaç halinde)"
+  },
+  {
+    "id": "paracetamol",
+    "name": "Parasetamol / Asetaminofen",
+    "genericNameTR": "Parasetamol",
+    "genericNameUS": "Acetaminophen",
+    "brandTR": ["Parol", "Tylol", "Minoset", "Calpol", "Geralgine"],
+    "brandUS": ["Tylenol", "Panadol", "Excedrin", "Mapap"],
+    "category": "Analjezik & Antipiretik / Para-Aminofenol Türevi",
+    "rxType": "REÇETESİZ (OTC)",
+    "atc": "N02BE01",
+    "ndc": "50580-498-01",
+    "titck": "TR-RUH-2005/119",
+    "description": "Santral sinir sisteminde COX inhibisyonu ve serotoninerjik yollar üzerinden ağrı ve ateşi düşürür; periferik antiinflamatuar etkisi zayıftır ve mideye zarar vermez.",
+    "dosageForms": "Tablet, Efervesan, Şurup, IV Flakon (500mg, 1000mg)",
+    "formula": "C8H9NO2",
+    "chirality": "Akiral Düzlemsel Aromatik Molekül",
+    "pillGeometry": {
+      "shape": "Kapsül Biçimli Çentikli Tablet",
+      "dimensions": "17.5mm × 7.0mm",
+      "imprint": "TYLENOL 500",
+      "colorLeft": "#ffffff",
+      "colorRight": "#fee2e2",
+      "textLeft": "PAR",
+      "textRight": "500"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "paracetamol"
+    },
+    "pharmacokinetics": {
+      "tMax": "0.5 - 1.0 sa (Hızlı ince bağırsak emilimi)",
+      "halfLife": "2.0 - 3.0 sa",
+      "bioavailability": "%60 - %90",
+      "metabolismPathway": "Glukuronidasyon (%60), Sülfasyon (%35), CYP2E1 toksik NAPQI yolağı (%5)",
+      "clearance": "Glukuronid ve sülfat konjugatları olarak idrarla (%85-90)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Kronik Alkolizm & Maksimum Doz Aşımı (>4000mg/gün)",
+        "badge": "Akut Karaciğer Nekrozu",
+        "description": "CYP2E1 enzim indüksiyonu ve glutatyon tükenmesi sonucu toksik NAPQI metaboliti hepatosit nekrozuna ve akut karaciğer yetmezliğine yol açar."
+      },
+      {
+        "severity": "warning",
+        "title": "Kombine Soğuk Algınlığı İlaçları ile Gizli Çift Doz",
+        "badge": "Doz Aşımı Riski",
+        "description": "Pek çok grip ilacının içinde (A-ferin, Tylolhot vb.) parasetamol bulunur; farkında olmadan çift alım yapılmamalıdır."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "4-6 saat arayla (Gerektiğinde)",
+      "rationale": "Günde 4 gram (4000mg) üst sınırı kesinlikle aşılmamalıdır. Karaciğer enzim yükünü azaltmak için minimum etkili doz tercih edilir."
+    },
+    "defaultDose": "500mg PRN",
+    "commonSchedule": "Günde en fazla 3-4 kez"
+  },
+  {
+    "id": "omeprazole",
+    "name": "Omeprazol",
+    "genericNameTR": "Omeprazol Magnezyum",
+    "genericNameUS": "Omeprazole Delayed-Release",
+    "brandTR": ["Losec", "Omeprol", "Demeprazol", "Erbolin"],
+    "brandUS": ["Prilosec", "Prilosec OTC", "Zegerid"],
+    "category": "Gastroenteroloji / Proton Pompa İnhibitörü (PPİ)",
+    "rxType": "REÇETELİ / OTC",
+    "atc": "A02BC01",
+    "ndc": "0186-0602-31",
+    "titck": "TR-RUH-2009/441",
+    "description": "Gastrik paryetal hücrelerdeki H+/K+ ATPaz enzimini kovalan bağlarla geri dönüşümsüz bloke ederek bazal ve uyarılmış mide asidi salgısını güçlü bir şekilde baskılar.",
+    "dosageForms": "Enterik Kaplı Kapsül / Pelet Tablet (20mg, 40mg)",
+    "formula": "C17H19N3O3S",
+    "chirality": "Rasemik Karışım (Esomeprazol S-enantiyomeridir)",
+    "pillGeometry": {
+      "shape": "İki Renkli Sert Jelatin Kapsül",
+      "dimensions": "15.8mm Uzunluk",
+      "imprint": "PRILOSEC 20",
+      "colorLeft": "#fed7aa",
+      "colorRight": "#ea580c",
+      "textLeft": "OME",
+      "textRight": "20mg"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "omeprazole"
+    },
+    "pharmacokinetics": {
+      "tMax": "0.5 - 3.5 sa",
+      "halfLife": "0.5 - 1.0 sa (Ancak doku enzim blokajı 72 saate kadar sürer)",
+      "bioavailability": "%30 - %40 (Tekrarlayan dozlarda %65)",
+      "metabolismPathway": "Sitokrom P450 2C19 (CYP2C19) ve CYP3A4",
+      "clearance": "Metabolitler halinde idrarla (%80)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Klopidogrel (Plavix) Antitrombositer Blokajı",
+        "badge": "Tromboz Riski",
+        "description": "Omeprazol CYP2C19'u kuvvetle inhibe ederek klopidogrel ön-ilacının aktif metabolitine dönüşmesini engeller; stent trombozu ve MI riskini artırır."
+      },
+      {
+        "severity": "warning",
+        "title": "B12 Vitamini & Kalsiyum/Magnezyum Malabsorpsiyonu",
+        "badge": "Kronik Kullanım Riski",
+        "description": "Uzun süreli asit supresyonu gıda kaynaklı B12, magnezyum ve kalsiyum emilimini azaltarak osteoporoz ve hipomagnezemiye yatkınlık oluşturur."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "07:30 (Sabah Kahvaltısından 30-60 dk Önce)",
+      "rationale": "Proton pompaları en yüksek miktarda yemek sonrası asit salgılama uyarısıyla aktifleşir. Yemekten 30 dk önce alınan PPİ, yeni sentezlenen aktif pompaları hedefler."
+    },
+    "defaultDose": "20mg",
+    "commonSchedule": "Günde 1 kez (Sabah aç)"
+  },
+  {
+    "id": "sertraline",
+    "name": "Sertralin Hidroklorür",
+    "genericNameTR": "Sertralin Hidroklorür",
+    "genericNameUS": "Sertraline Hydrochloride",
+    "brandTR": ["Lustral", "Selectra", "Seralin", "Zeleft", "Misol"],
+    "brandUS": ["Zoloft"],
+    "category": "Psikiyatri / Selektif Serotonin Geri Alım İnhibitörü (SSRI)",
+    "rxType": "KONTROLLÜ REÇETELİ TEDAVİ",
+    "atc": "N06AB06",
+    "ndc": "0049-4960-66",
+    "titck": "TR-RUH-2007/582",
+    "description": "Presinaptik nöronlarda serotonin (5-HT) geri alımını son derece selektif olarak bloke eder. Majör depresyon, OKB, panik bozukluk ve sosyal anksiyetede altın standarttır.",
+    "dosageForms": "Film Tablet (50mg, 100mg)",
+    "formula": "C17H17Cl2N · HCl",
+    "chirality": "(1S, 4S)-Stereoizomerik Konfigürasyon",
+    "pillGeometry": {
+      "shape": "Oval Çentikli Film Tablet",
+      "dimensions": "10.5mm × 5.5mm",
+      "imprint": "ZLT 50",
+      "colorLeft": "#93c5fd",
+      "colorRight": "#60a5fa",
+      "textLeft": "SRT",
+      "textRight": "50"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "sertraline"
+    },
+    "pharmacokinetics": {
+      "tMax": "4.5 - 8.5 sa",
+      "halfLife": "26.0 sa (Aktif metabolit N-desmetilsertralin: 66 sa)",
+      "bioavailability": "%44 (Yemekle %25 artar)",
+      "metabolismPathway": "CYP2B6, CYP2C19, CYP2D6 ve CYP3A4",
+      "clearance": "Eşit oranda feçes ve idrar (%45 / %45)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "MAO İnhibitörleri, Linezolid & Sarı Kantaron (St. John's Wort)",
+        "badge": "Serotonin Sendromu",
+        "description": "Hipertermi, rijidite, miyoklonus ve otonom instabilite ile karakterize ölümcül serotonin sendromunu tetikleyebilir. Arada en az 14 gün yıkanma süresi bırakılmalıdır."
+      },
+      {
+        "severity": "warning",
+        "title": "NSAİİ ve Aspirin ile Birlikte Kullanım",
+        "badge": "GİS Kanama Riski",
+        "description": "Trombosit içi serotonin depolarını tüketerek mide-bağırsak kanama riskini 3 katına çıkarabilir."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "08:30 (Sabah Kahvaltısı İle)",
+      "rationale": "Bazı hastalarda uyarıcı etki gösterip uykusuzluğa neden olabileceği için sabahları yemekle alınması önerilir. Sedasyon gelişen hastalarda geceye kaydırılabilir."
+    },
+    "defaultDose": "50mg",
+    "commonSchedule": "Günde 1 kez (Sabah)"
+  },
+  {
+    "id": "levothyroxine",
+    "name": "Levotiroksin Sodyum",
+    "genericNameTR": "Levotiroksin Sodyum",
+    "genericNameUS": "Levothyroxine Sodium",
+    "brandTR": ["Euthyrox", "Levotiron", "Tefor"],
+    "brandUS": ["Synthroid", "Levoxyl", "Tirosint", "Unithroid"],
+    "category": "Endokrinoloji / Sentetik Tiroid Hormonu (T4)",
+    "rxType": "DAR TERAPÖTİK İNDEKSLİ REÇETELİ",
+    "atc": "H03AA01",
+    "ndc": "0074-7068-11",
+    "titck": "TR-RUH-2004/230",
+    "description": "Sentetik L-tiroksin (T4) olup periferik dokularda aktif tiroid hormonu olan triiyodotironine (T3) dönüşerek bazal metabolizma hızını, protein sentezini ve kardiyak debiyi regüle eder.",
+    "dosageForms": "Çok Hassas Dozlu Tablet (25mcg, 50mcg, 75mcg, 100mcg, 150mcg)",
+    "formula": "C15H10I4NNaO4",
+    "chirality": "L-Enantiyomer (Optik D-formu inaktiftir)",
+    "pillGeometry": {
+      "shape": "Küçük Yuvarlak Renk Kodlu Tablet",
+      "dimensions": "7.0mm Çap",
+      "imprint": "SYNTHROID 50",
+      "colorLeft": "#fed7aa",
+      "colorRight": "#ffedd5",
+      "textLeft": "T4",
+      "textRight": "50mcg"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "levothyroxine"
+    },
+    "pharmacokinetics": {
+      "tMax": "2.0 sa",
+      "halfLife": "6 - 7 gün (Ötiroid), 9-10 gün (Hipotiroid)",
+      "bioavailability": "%40 - %80 (Mide asidine ve açlığa son derece bağımlıdır)",
+      "metabolismPathway": "Deiyodinaz enzimleri ile periferik T3 dönüşümü, hepatik glukuronidasyon",
+      "clearance": "İdrar (%50) ve Feçes (%50)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Kalsiyum Karbonat, Demir Sülfat ve Antiasitler",
+        "badge": "Şelasyon & Emilim Blokajı",
+        "description": "Çok değerlikli katyonlar tiroksin ile çözünmeyen şelat kompleksleri oluşturarak emilimi %60-80 oranında düşürür. Aralarında en az 4 saat fark olmalıdır."
+      },
+      {
+        "severity": "warning",
+        "title": "Sabah Kahvesi & Soya Ürünleri",
+        "badge": "Biyoyararlanım Kaybı",
+        "description": "Kahve çekirdekleri ve soya bileşenleri emilimi belirgin şekilde bozar; kahve ancak ilaçtan en az 60 dakika sonra tüketilmelidir."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "06:30 (Kahvaltıdan 60 dk Önce / Tam Aç Karnına)",
+      "rationale": "Mide asidinin varlığı ve besin yokluğu optimal intestinal emilim için şarttır. Sadece tam bir bardak saf su ile içilmelidir."
+    },
+    "defaultDose": "50mcg",
+    "commonSchedule": "Günde 1 kez (Sabah tam aç)"
+  },
+  {
+    "id": "aspirin",
+    "name": "Asetilsalisilik Asit (Düşük Doz Kardiyoprotektif)",
+    "genericNameTR": "Asetilsalisilik Asit",
+    "genericNameUS": "Aspirin (Low-Dose / Baby Aspirin)",
+    "brandTR": ["Coraspin", "Ecopirin", "Aspirin", "Dispril"],
+    "brandUS": ["Bayer Low Dose", "Ecotrin", "Bufferin", "St. Joseph"],
+    "category": "Kardiyoloji & Hematoloji / Antitrombositer Ajan",
+    "rxType": "REÇETESİZ / REÇETELİ (Kardiyoprotektif)",
+    "atc": "B01AC06",
+    "ndc": "0280-2100-20",
+    "titck": "TR-RUH-2001/819",
+    "description": "Trombosit COX-1 enziminin Serin-529 kalıntısını geri dönüşümsüz asetilleyerek Tromboksan A2 (TXA2) sentezini trombositin ömrü boyunca (7-10 gün) felç eder; arteriyel pıhtılaşmayı engeller.",
+    "dosageForms": "Enterik Kaplı Tablet (81mg, 100mg, 300mg)",
+    "formula": "C9H8O4",
+    "chirality": "Akiral Aromatik Ester",
+    "pillGeometry": {
+      "shape": "Küçük Kalp veya Yuvarlak Enterik Tablet",
+      "dimensions": "8.0mm Çap",
+      "imprint": "BAYER 81",
+      "colorLeft": "#fecaca",
+      "colorRight": "#fca5a5",
+      "textLeft": "COR",
+      "textRight": "100"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "aspirin"
+    },
+    "pharmacokinetics": {
+      "tMax": "Enterik kaplama ile 3-4 sa",
+      "halfLife": "Aspirin: 15-20 dk; Salisilat metaboliti: 2-3 sa",
+      "bioavailability": "%50 - %70 (Enterik salımla mide korunur)",
+      "metabolismPathway": "Plazma esterazları ile hızla salisilik aside hidroliz",
+      "clearance": "Böbrekler yoluyla idrar pH'ına bağlı atılım"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "İbuprofen ve Naproksen gibi NSAİİ'ler",
+        "badge": "Kardiyoprotektif Kayıp",
+        "description": "NSAİİ molekülleri COX-1 kanalını geçici kapatıp aspirinin kalıcı asetillemesini bloke eder. Aspirin NSAİİ'den 2 saat önce alınmalıdır."
+      },
+      {
+        "severity": "warning",
+        "title": "Ginkgo Biloba & Yüksek Doz Balık Yağı / E Vitamini",
+        "badge": "Mikrokanama Riski",
+        "description": "Bitkisel trombosit inhibitörleri ile sinerji yaratarak gastrointestinal gizli kanama ve hematom riskini artırır."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "21:30 (Gece Yatmadan Önce)",
+      "rationale": "Kardiyovasküler olaylar (kalp krizi ve inme) sabah 06:00 – 10:00 arasında zirve yapar. Gece yatarken alınan aspirin, sabahın erken saatlerinde dolaşıma yeni katılan trombositleri en etkili şekilde inaktive eder."
+    },
+    "defaultDose": "100mg Enterik",
+    "commonSchedule": "Günde 1 kez (Gece)"
+  },
+  {
+    "id": "amlodipine",
+    "name": "Amlodipin Besilat",
+    "genericNameTR": "Amlodipin Besilat",
+    "genericNameUS": "Amlodipine Besylate",
+    "brandTR": ["Norvasc", "Vazkor", "Amlodis", "Monopril Plus (Kombine)"],
+    "brandUS": ["Norvasc", "Katerzia", "Amvaz", "Lotrel (Kombine)"],
+    "category": "Kardiyoloji & Nefroloji / Dihidropiridin Kalsiyum Kanal Blokörü",
+    "rxType": "REÇETELİ ANTİHİPERTANSİF",
+    "atc": "C08CA01",
+    "ndc": "0069-1530-68",
+    "titck": "TR-RUH-2008/114",
+    "description": "Vasküler düz kas ve miyokardiyumdaki L-tipi kalsiyum kanallarını bloke ederek periferik vasküler direnci ve sistemik kan basıncını düşürür; koroner vazodilatasyon sağlar.",
+    "dosageForms": "Oral Tablet (5mg, 10mg)",
+    "formula": "C20H25ClN2O5 · C6H6O3S",
+    "chirality": "Rasemik Karışım (Levamlodipin aktif S-enantiyomerdir)",
+    "pillGeometry": {
+      "shape": "Sekizgen / Yuvarlak Beyaz Tablet",
+      "dimensions": "9.0mm Çap",
+      "imprint": "AML 5",
+      "colorLeft": "#f1f5f9",
+      "colorRight": "#e2e8f0",
+      "textLeft": "NOR",
+      "textRight": "5mg"
+    },
+    "svgMolecule": {
+      "viewBox": "0 0 340 100",
+      "type": "amlodipine"
+    },
+    "pharmacokinetics": {
+      "tMax": "6.0 - 12.0 sa (Yavaş ve kararlı plazma yükselişi)",
+      "halfLife": "30 - 50 sa (Çok uzun eliminasyon yarı ömrü)",
+      "bioavailability": "%64 - %90 (Yemeklerden etkilenmez)",
+      "metabolismPathway": "Karaciğerde yoğun CYP3A4 metabolizması",
+      "clearance": "Renal (%60 metabolit olarak), Fekal (%20-25)"
+    },
+    "interactions": [
+      {
+        "severity": "severe",
+        "title": "Simvastatin > 20mg ile Birlikte Kullanım",
+        "badge": "Statin Maruziyet Riski",
+        "description": "Amlodipin CYP3A4 aracılı simvastatin klerensini azaltır; eşzamanlı kullanımda simvastatin dozu 20mg'ı aşmamalıdır."
+      },
+      {
+        "severity": "warning",
+        "title": "Periferik Ödem (Ayak Bileği Şişliği)",
+        "badge": "Prekapiller Vazodilatasyon",
+        "description": "Postkapiller dilatasyon olmadan selektif prekapiller arteriyolar gevşeme interstisyel sıvı kaçışına neden olur; tuz kısıtlaması tavsiye edilir."
+      }
+    ],
+    "chronotherapy": {
+      "idealTime": "21:00 (Akşam Saatleri)",
+      "rationale": "Akşam alımı 'non-dipper' (gece tansiyonu düşmeyen) hipertansif hastalarda kardiyovasküler olay insidansını sabah alımına göre belirgin derecede azaltır."
+    },
+    "defaultDose": "5mg",
+    "commonSchedule": "Günde 1 kez"
+  }
+]

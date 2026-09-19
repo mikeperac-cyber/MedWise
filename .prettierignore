@@ -1,0 +1,13 @@
+dist
+node_modules
+coverage
+.vercel
+package-lock.json
+public/drugs.json
+
+# Generated measurement artifacts
+analysis/
+
+# Scratch
+.remember/
+.tmpwork/
