@@ -117,11 +117,11 @@ görünüşünden tanır.
 
 | Ne                                          | Neden                                                                             |
 | ------------------------------------------- | --------------------------------------------------------------------------------- |
-| `app.js`, `style.css` (kök dizin)           | Vite + TypeScript + Tailwind boru hattına taşındı                                  |
-| `src/main.ts` (1443 satır), `src/router.ts` | Kabuk + özellik modülleri + altı sayfa girişi ile değiştirildi                     |
-| Yerel "klinik sentez motoru"                | Anahtar kelimeye bakan beş dallı `if/else` idi; hazır metni analiz gibi sunuyordu  |
-| Başlangıç verisi (`streak: 14`, 2100 ml)    | Yeni kullanıcıya hak etmediği iki haftalık uyum gösteriyordu                        |
-| "917.964 indekslenmiş formülasyon" rozeti   | Kayıt sayısı 1548 ile çarpılıyordu; artık gerçek sayı yazıyor                      |
+| `app.js`, `style.css` (kök dizin)           | Vite + TypeScript + Tailwind boru hattına taşındı                                 |
+| `src/main.ts` (1443 satır), `src/router.ts` | Kabuk + özellik modülleri + altı sayfa girişi ile değiştirildi                    |
+| Yerel "klinik sentez motoru"                | Anahtar kelimeye bakan beş dallı `if/else` idi; hazır metni analiz gibi sunuyordu |
+| Başlangıç verisi (`streak: 14`, 2100 ml)    | Yeni kullanıcıya hak etmediği iki haftalık uyum gösteriyordu                      |
+| "917.964 indekslenmiş formülasyon" rozeti   | Kayıt sayısı 1548 ile çarpılıyordu; artık gerçek sayı yazıyor                     |
 
 ---
 

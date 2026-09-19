@@ -64,8 +64,8 @@ Mantık: [`src/utils/provenance.ts`](src/utils/provenance.ts).
 Altı ayrı HTML belgesi. Tek sayfalık hash yönlendirmesi kaldırıldı; her sayfanın
 kendi URL'si, kendi `<title>`'ı ve kendi JavaScript paketi var.
 
-| Sayfa              | Yol              | Ne yapar                                                             |
-| ------------------ | ---------------- | -------------------------------------------------------------------- |
+| Sayfa              | Yol              | Ne yapar                                                              |
+| ------------------ | ---------------- | --------------------------------------------------------------------- |
 | Doz Kokpiti        | `/`              | Bugünkü dozlar, uyum halkası, su takibi, gerektiğinde alınanlar       |
 | İlaç Ansiklopedisi | `/ansiklopedi`   | Önce tabletin görünüşü, sonra sade dil özeti, en altta teknik ayrıntı |
 | Çapraz Etkileşim   | `/etkilesim`     | İki veya daha fazla ilacın birbirini etkileyip etkilemediği           |
@@ -129,16 +129,16 @@ npm run dev
 
 | Komut                         | Açıklama                                                 |
 | ----------------------------- | -------------------------------------------------------- |
-| `npm run dev`                 | Geliştirme sunucusu                                       |
-| `npm run build`               | Tip denetimi + altı sayfayı `dist/` içine derler          |
-| `npm run preview`             | Derlenmiş çıktıyı yerelde önizler                         |
-| `npm test`                    | Testleri izleme modunda çalıştırır                        |
-| `npm run test:run`            | Testleri bir kez çalıştırır                               |
-| `npm run typecheck`           | `tsc --noEmit`                                            |
-| `npm run lint`                | ESLint                                                    |
-| `npm run format`              | Prettier                                                  |
-| `npm run measure:readability` | Okunabilirlik ve kaynak raporunu `analysis/` içine yazar  |
-| `npm run build:analyze`       | Paket boyutu görselleştirmesi                             |
+| `npm run dev`                 | Geliştirme sunucusu                                      |
+| `npm run build`               | Tip denetimi + altı sayfayı `dist/` içine derler         |
+| `npm run preview`             | Derlenmiş çıktıyı yerelde önizler                        |
+| `npm test`                    | Testleri izleme modunda çalıştırır                       |
+| `npm run test:run`            | Testleri bir kez çalıştırır                              |
+| `npm run typecheck`           | `tsc --noEmit`                                           |
+| `npm run lint`                | ESLint                                                   |
+| `npm run format`              | Prettier                                                 |
+| `npm run measure:readability` | Okunabilirlik ve kaynak raporunu `analysis/` içine yazar |
+| `npm run build:analyze`       | Paket boyutu görselleştirmesi                            |
 
 ---
 

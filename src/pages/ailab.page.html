@@ -1,157 +1,184 @@
-        <div class="bg-white rounded-3xl border border-outline-variant/70 shadow-luminous overflow-hidden" id="ai-workbench">
-          <!-- Top Crimson Header -->
-          <div class="bg-gradient-to-r from-[#291714] via-[#402b28] to-[#5e191b] p-6 sm:p-8 text-white space-y-3">
-            <div class="flex items-center justify-between">
-              <button
-                class="px-2.5 py-1 rounded-full bg-primary/40 text-primary-fixed font-mono text-[11px] font-semibold border border-primary-fixed-dim/30 flex items-center gap-1.5 hover:bg-primary/60 transition-colors"
-                onclick="openByokModal()"
-              >
-                <span class="material-symbols-outlined text-[14px] fill-icon">vpn_key</span>
-              </button>
-              <span class="text-xs font-mono text-surface-container-highest" id="active-model-name">
-                Gemini Flash
-              </span>
-            </div>
-            <h1 class="font-serif text-2xl sm:text-3xl font-bold">
-              Yapay Zeka Farmakoterapi Laboratuvarı
-            </h1>
-            <p class="text-xs sm:text-sm text-surface-container-highest/80 max-w-3xl leading-relaxed">
-              Tarayıcınızdan doğrudan uç noktaya çağrı. Sıfır sunucu telemetrisi, sıfır veri sızıntısı. Google Gemini, OpenAI GPT-4o ve Anthropic Claude anahtarlarınızı getirerek klinik karar desteği alın.
-            </p>
-          </div>
+<div
+  class="bg-white rounded-3xl border border-outline-variant/70 shadow-luminous overflow-hidden"
+  id="ai-workbench"
+>
+  <!-- Top Crimson Header -->
+  <div
+    class="bg-gradient-to-r from-[#291714] via-[#402b28] to-[#5e191b] p-6 sm:p-8 text-white space-y-3"
+  >
+    <div class="flex items-center justify-between">
+      <button
+        class="px-2.5 py-1 rounded-full bg-primary/40 text-primary-fixed font-mono text-[11px] font-semibold border border-primary-fixed-dim/30 flex items-center gap-1.5 hover:bg-primary/60 transition-colors"
+        onclick="openByokModal()"
+      >
+        <span class="material-symbols-outlined text-[14px] fill-icon">vpn_key</span>
+      </button>
+      <span class="text-xs font-mono text-surface-container-highest" id="active-model-name">
+        Gemini Flash
+      </span>
+    </div>
+    <h1 class="font-serif text-2xl sm:text-3xl font-bold">Yapay Zeka Farmakoterapi Laboratuvarı</h1>
+    <p class="text-xs sm:text-sm text-surface-container-highest/80 max-w-3xl leading-relaxed">
+      Tarayıcınızdan doğrudan uç noktaya çağrı. Sıfır sunucu telemetrisi, sıfır veri sızıntısı.
+      Google Gemini, OpenAI GPT-4o ve Anthropic Claude anahtarlarınızı getirerek klinik karar
+      desteği alın.
+    </p>
+  </div>
 
-          <!-- Controls & Workspace -->
-          <div class="p-6 sm:p-8 space-y-6">
-            <!-- Shown until the reader supplies their own API key. There is no
+  <!-- Controls & Workspace -->
+  <div class="p-6 sm:p-8 space-y-6">
+    <!-- Shown until the reader supplies their own API key. There is no
                  local fallback engine: without a key this panel does nothing. -->
-            <div
-              id="ai-key-notice"
-              role="note"
-              class="p-4 rounded-2xl border-2 border-amber-300 bg-amber-50 text-amber-900 space-y-1"
-            >
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-[20px]" aria-hidden="true">key_off</span>
-                <p class="text-xs font-bold">Bu panel şu anda kapalı.</p>
-              </div>
-              <p class="text-xs leading-relaxed">
-                Yapay zeka yanıtı almak için kendi API anahtarınızı eklemeniz gerekir.
-                Anahtar yalnızca bu tarayıcıda saklanır, hiçbir sunucuya gönderilmez.
-                Anahtar olmadan MedWise size hazır metin göstermez.
-              </p>
-            </div>
+    <div
+      id="ai-key-notice"
+      role="note"
+      class="p-4 rounded-2xl border-2 border-amber-300 bg-amber-50 text-amber-900 space-y-1"
+    >
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px]" aria-hidden="true">key_off</span>
+        <p class="text-xs font-bold">Bu panel şu anda kapalı.</p>
+      </div>
+      <p class="text-xs leading-relaxed">
+        Yapay zeka yanıtı almak için kendi API anahtarınızı eklemeniz gerekir. Anahtar yalnızca bu
+        tarayıcıda saklanır, hiçbir sunucuya gönderilmez. Anahtar olmadan MedWise size hazır metin
+        göstermez.
+      </p>
+    </div>
 
-            <!-- Engine Selector Tabs -->
-            <div class="max-w-md">
-              <label class="block text-xs font-bold text-outline uppercase tracking-wider mb-2">
-                Seçili Yapay Zeka Motoru
-              </label>
-              <div
-                class="flex rounded-xl bg-surface-container-low p-1 border border-outline-variant/50 text-xs font-semibold"
-                id="engine-selector"
-              >
-                <button
-                  class="flex-1 py-2 rounded-lg bg-white font-bold text-primary shadow-xs"
-                  type="button" data-provider="gemini" onclick="selectModel('gemini')"
-                >
-                  Gemini 1.5
-                </button>
-                <button
-                  class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-medium"
-                  type="button" data-provider="gpt4o" onclick="selectModel('gpt4o')"
-                >
-                  GPT-4o
-                </button>
-                <button
-                  class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-medium"
-                  type="button" data-provider="claude" onclick="selectModel('claude')"
-                >
-                  Claude
-                </button>
-              </div>
-            </div>
+    <!-- Engine Selector Tabs -->
+    <div class="max-w-md">
+      <label class="block text-xs font-bold text-outline uppercase tracking-wider mb-2">
+        Seçili Yapay Zeka Motoru
+      </label>
+      <div
+        class="flex rounded-xl bg-surface-container-low p-1 border border-outline-variant/50 text-xs font-semibold"
+        id="engine-selector"
+      >
+        <button
+          class="flex-1 py-2 rounded-lg bg-white font-bold text-primary shadow-xs"
+          type="button"
+          data-provider="gemini"
+          onclick="selectModel('gemini')"
+        >
+          Gemini 1.5
+        </button>
+        <button
+          class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-medium"
+          type="button"
+          data-provider="gpt4o"
+          onclick="selectModel('gpt4o')"
+        >
+          GPT-4o
+        </button>
+        <button
+          class="flex-1 py-2 rounded-lg text-on-surface-variant hover:text-on-surface font-medium"
+          type="button"
+          data-provider="claude"
+          onclick="selectModel('claude')"
+        >
+          Claude
+        </button>
+      </div>
+    </div>
 
-            <!-- Suggested Clinical Prompts -->
-            <div class="space-y-2">
-              <span class="text-xs font-bold text-outline uppercase tracking-wider">
-                Örnek Klinik Sorgu Şablonları
-              </span>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <button
-                  class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
-                  onclick="setAiQuery('Kas ağrısı için Atorvastatin ile CoQ10 alabilir miyim?')"
-                >
-                  "Kas ağrısı için Atorvastatin ile CoQ10 alabilir miyim?"
-                </button>
-                <button
-                  class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
-                  onclick="setAiQuery('Sirkadiyen zamanlama: Statin alımı sabah mı akşam mı?')"
-                >
-                  "Sirkadiyen zamanlama: Statin alımı sabah mı akşam mı?"
-                </button>
-                <button
-                  class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
-                  onclick="setAiQuery('Aspirin ile İbuprofen aynı gün nasıl alınmalı?')"
-                >
-                  "Aspirin ile İbuprofen aynı gün nasıl alınmalı?"
-                </button>
-                <button
-                  class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
-                  onclick="setAiQuery('Hafif karaciğer yetmezliğinde Ezetimib güvenliği?')"
-                >
-                  "Hafif karaciğer yetmezliğinde Ezetimib güvenliği?"
-                </button>
-              </div>
-            </div>
+    <!-- Suggested Clinical Prompts -->
+    <div class="space-y-2">
+      <span class="text-xs font-bold text-outline uppercase tracking-wider">
+        Örnek Klinik Sorgu Şablonları
+      </span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <button
+          class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
+          onclick="setAiQuery('Kas ağrısı için Atorvastatin ile CoQ10 alabilir miyim?')"
+        >
+          "Kas ağrısı için Atorvastatin ile CoQ10 alabilir miyim?"
+        </button>
+        <button
+          class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
+          onclick="setAiQuery('Sirkadiyen zamanlama: Statin alımı sabah mı akşam mı?')"
+        >
+          "Sirkadiyen zamanlama: Statin alımı sabah mı akşam mı?"
+        </button>
+        <button
+          class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
+          onclick="setAiQuery('Aspirin ile İbuprofen aynı gün nasıl alınmalı?')"
+        >
+          "Aspirin ile İbuprofen aynı gün nasıl alınmalı?"
+        </button>
+        <button
+          class="text-left p-3 rounded-xl bg-surface-container-low hover:bg-surface-container border border-outline-variant/60 text-xs text-on-surface transition-colors"
+          onclick="setAiQuery('Hafif karaciğer yetmezliğinde Ezetimib güvenliği?')"
+        >
+          "Hafif karaciğer yetmezliğinde Ezetimib güvenliği?"
+        </button>
+      </div>
+    </div>
 
-            <!-- Clinical Analysis Output Container -->
-            <div class="rounded-2xl bg-surface-container-low border border-outline-variant/60 p-5 space-y-3">
-              <div class="flex items-center justify-between border-b border-surface-container pb-2">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[18px] text-primary">smart_toy</span>
-                  <span class="text-xs font-bold text-on-surface font-serif">Sentezlenmiş Klinik Analiz</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-[10px] font-mono text-outline" id="ai-latency-indicator">Doğrulandı</span>
-                  <button
-                    class="p-1 rounded text-outline hover:text-primary transition-colors"
-                    onclick="copyAiResponse()"
-                    title="Klinik Analizi Kopyala"
-                  >
-                    <span class="material-symbols-outlined text-[16px]" id="copy-ai-icon">content_copy</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- AI Output Display -->
-              <div class="text-xs sm:text-sm text-on-surface-variant space-y-2 leading-relaxed" id="ai-response-text">
-                <p><strong class="text-on-surface">Hedef:</strong> CoQ10 (Ubikinon) + Atorvastatin 20mg</p>
-                <p>
-                  Statinler HMG-CoA redüktazı inhibe ederek endojen CoQ10 öncüsü mevalonat sentezini engeller. Bu durum dolaşımdaki ubikinonu sıklıkla
-                  <span class="font-mono text-primary font-bold">~%40</span> oranında azaltır.
-                </p>
-                <div class="p-3 bg-white rounded-xl border border-primary-fixed-dim text-xs text-on-surface">
-                  <strong class="text-primary font-semibold">Klinik Uzlaşı:</strong> Günlük 100–200mg CoQ10 takviyesi ihmal edilebilir toksisite riski taşır ve semptomatik kohortlarda statin kaynaklı kas yorgunluğunu (SAMS) hafifletebilir.
-                </div>
-              </div>
-            </div>
-
-            <!-- Input Prompt Box -->
-            <div class="space-y-3">
-              <textarea
-                class="w-full p-4 rounded-2xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/10 text-xs sm:text-sm text-on-surface bg-white resize-none shadow-inner"
-                id="ai-prompt-box"
-                placeholder="Farmakokinetik, etken madde veya besin etkileşimi hakkında soru sorun... (Göndermek için Enter)"
-                rows="3"
-              ></textarea>
-              <button
-                id="ai-run-btn"
-                type="button"
-                class="w-full py-3 bg-primary hover:bg-[#99000c] text-white rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95"
-                onclick="executeAiRun()"
-              >
-                <span id="ai-btn-text">Soruyu gönder</span>
-                <span class="material-symbols-outlined text-[17px]">send</span>
-              </button>
-            </div>
-          </div>
+    <!-- Clinical Analysis Output Container -->
+    <div
+      class="rounded-2xl bg-surface-container-low border border-outline-variant/60 p-5 space-y-3"
+    >
+      <div class="flex items-center justify-between border-b border-surface-container pb-2">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px] text-primary">smart_toy</span>
+          <span class="text-xs font-bold text-on-surface font-serif"
+            >Sentezlenmiş Klinik Analiz</span
+          >
         </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-mono text-outline" id="ai-latency-indicator"
+            >Doğrulandı</span
+          >
+          <button
+            class="p-1 rounded text-outline hover:text-primary transition-colors"
+            onclick="copyAiResponse()"
+            title="Klinik Analizi Kopyala"
+          >
+            <span class="material-symbols-outlined text-[16px]" id="copy-ai-icon"
+              >content_copy</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <!-- AI Output Display -->
+      <div
+        class="text-xs sm:text-sm text-on-surface-variant space-y-2 leading-relaxed"
+        id="ai-response-text"
+      >
+        <p><strong class="text-on-surface">Hedef:</strong> CoQ10 (Ubikinon) + Atorvastatin 20mg</p>
+        <p>
+          Statinler HMG-CoA redüktazı inhibe ederek endojen CoQ10 öncüsü mevalonat sentezini
+          engeller. Bu durum dolaşımdaki ubikinonu sıklıkla
+          <span class="font-mono text-primary font-bold">~%40</span> oranında azaltır.
+        </p>
+        <div
+          class="p-3 bg-white rounded-xl border border-primary-fixed-dim text-xs text-on-surface"
+        >
+          <strong class="text-primary font-semibold">Klinik Uzlaşı:</strong> Günlük 100–200mg CoQ10
+          takviyesi ihmal edilebilir toksisite riski taşır ve semptomatik kohortlarda statin
+          kaynaklı kas yorgunluğunu (SAMS) hafifletebilir.
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Prompt Box -->
+    <div class="space-y-3">
+      <textarea
+        class="w-full p-4 rounded-2xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/10 text-xs sm:text-sm text-on-surface bg-white resize-none shadow-inner"
+        id="ai-prompt-box"
+        placeholder="Farmakokinetik, etken madde veya besin etkileşimi hakkında soru sorun... (Göndermek için Enter)"
+        rows="3"
+      ></textarea>
+      <button
+        id="ai-run-btn"
+        type="button"
+        class="w-full py-3 bg-primary hover:bg-[#99000c] text-white rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95"
+        onclick="executeAiRun()"
+      >
+        <span id="ai-btn-text">Soruyu gönder</span>
+        <span class="material-symbols-outlined text-[17px]">send</span>
+      </button>
+    </div>
+  </div>
+</div>
