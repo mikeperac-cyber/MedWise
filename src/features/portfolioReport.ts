@@ -11,7 +11,7 @@
 import { state } from "../state.ts";
 import { clinicalCaseStudies } from "../constants/caseStudies.ts";
 import { summarizeCorpus, type CorpusReadability } from "../utils/readability.ts";
-import { summarizeProvenance, isVerifiedAtc } from "../utils/provenance.ts";
+import { summarizeProvenance, summarizeCitations, isVerifiedAtc } from "../utils/provenance.ts";
 import { buildPlainSummary } from "../utils/plainLanguage.ts";
 import { byId, escapeHtml } from "../shell/shell.ts";
 
@@ -88,16 +88,17 @@ export function renderPortfolioMetrics(): void {
 
   // --- Provenance -----------------------------------------------------------
   const prov = summarizeProvenance(drugs);
+  const cit = summarizeCitations(drugs);
 
   const heroCount = byId("hero-record-count");
   if (heroCount) {
-    heroCount.textContent = `${prov.total} kayıt · ${prov.verified} doğrulanmış`;
+    heroCount.textContent = `${prov.total} kayıt · ${cit.cited} kaynaklı doğrulama`;
   }
 
   const provenanceBody = `
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
       ${statCard("Toplam kayıt", String(prov.total), "Veri kümesindeki ilaç sayısı.")}
-      ${statCard("Doğrulanabilir", String(prov.verified), "ATC kodu geçerli WHO biçiminde.", "text-emerald-700")}
+      ${statCard("Kaynaklı doğrulama", String(cit.cited), "WHO ATC/DDD Index ve/veya FDA DailyMed belgesiyle elle kontrol edildi.", "text-emerald-700")}
       ${statCard("Doğrulanamayan", String(prov.unverified), "Tanımlayıcıları üretici betik tarafından uydurulmuş.", "text-error")}
       ${statCard("Oran", `%${prov.unverifiedPercent}`, "Kayıtların bu kadarı doğrulanamıyor.", "text-error")}
     </div>
@@ -109,6 +110,12 @@ export function renderPortfolioMetrics(): void {
         İlaç <em>adları</em> gerçektir; bu üç tanımlayıcı ise ${prov.unverified} kayıtta gerçek değildir.
         Uygulama artık bu kayıtları gizlemiyor, ama her monografın başında açık bir uyarı
         gösteriyor ve o kayıtlar için sade dil özeti üretmeyi reddediyor.
+      </p>
+      <p>
+        Geri kalan ${cit.verified} kayıt ise sadece ATC biçimi geçerli değil — her biri gerçek bir
+        WHO ATC/DDD Index kaydına, ${cit.cited === cit.verified ? "hepsi" : `${cit.cited}'i`} ise
+        ayrıca bir FDA DailyMed belgesine karşı elle kontrol edildi ve kaynak bağlantısı her
+        monografta gösteriliyor.
       </p>
     </div>
   `;

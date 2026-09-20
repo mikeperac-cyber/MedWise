@@ -15,7 +15,8 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "build:analyze": "vite build --mode analyze",
-    "measure:readability": "node scripts/measure_readability.mjs"
+    "measure:readability": "node scripts/measure_readability.mjs",
+    "measure:cloze": "node scripts/generate_cloze_items.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",

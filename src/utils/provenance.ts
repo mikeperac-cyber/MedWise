@@ -20,6 +20,7 @@
  */
 
 import type { Drug } from "../types/index.ts";
+import { GOLD_CITATIONS, type GoldCitation } from "../data/goldCitations.ts";
 
 /**
  * A real WHO ATC code is 7 characters: anatomical letter, two digits,
@@ -56,6 +57,12 @@ export interface DrugProvenance {
   fields: FieldProvenance[];
   /** Turkish sentence describing the record's standing, for the UI banner. */
   notice: string;
+  /**
+   * Present only when this record's ATC code was hand-checked against a real
+   * registry document (see src/data/goldCitations.ts), not just shape-matched.
+   * This is a strictly stronger claim than `atcVerified` alone.
+   */
+  citation: GoldCitation | null;
 }
 
 /** Structural check for a real WHO ATC code. */
@@ -88,6 +95,11 @@ const VERIFIED_NOTICE =
 const UNVERIFIED_NOTICE =
   "DİKKAT: Bu kaydın ATC, NDC ve TİTCK numaraları proje veri üreticisi tarafından otomatik üretilmiştir ve GERÇEK DEĞİLDİR. Sadece ilaç adı gerçektir. Bu numaralara dayanarak hiçbir klinik karar vermeyiniz.";
 
+function citedNotice(citation: GoldCitation): string {
+  const registryPart = citation.labelSource ? ` ve ${citation.labelSource.registry}` : "";
+  return `Bu kaydın ATC sınıf kodu WHO ATC/DDD Index${registryPart} üzerinden ${citation.verifiedOn} tarihinde elle doğrulandı. Kaynaklar aşağıdadır.`;
+}
+
 /**
  * Classifies every identifier field on a record.
  *
@@ -98,6 +110,7 @@ const UNVERIFIED_NOTICE =
 export function getDrugProvenance(drug: Drug): DrugProvenance {
   const atcVerified = isVerifiedAtc(drug.atc);
   const status: ProvenanceStatus = atcVerified ? "verified" : "unverified";
+  const citation = atcVerified ? (GOLD_CITATIONS[drug.id] ?? null) : null;
 
   const fields: FieldProvenance[] = [
     {
@@ -127,7 +140,8 @@ export function getDrugProvenance(drug: Drug): DrugProvenance {
     atcVerified,
     status,
     fields,
-    notice: atcVerified ? VERIFIED_NOTICE : UNVERIFIED_NOTICE,
+    notice: citation ? citedNotice(citation) : atcVerified ? VERIFIED_NOTICE : UNVERIFIED_NOTICE,
+    citation,
   };
 }
 
@@ -150,4 +164,18 @@ export function summarizeProvenance(drugs: Drug[]): CorpusProvenanceSummary {
     unverified,
     unverifiedPercent: total === 0 ? 0 : Math.round((unverified / total) * 1000) / 10,
   };
+}
+
+export interface CitationSummary {
+  /** Shape-verified count (same as CorpusProvenanceSummary.verified). */
+  verified: number;
+  /** Of those, how many carry a hand-checked registry citation. */
+  cited: number;
+}
+
+/** How much of the shape-verified subset is actually backed by a citation. */
+export function summarizeCitations(drugs: Drug[]): CitationSummary {
+  const verifiedDrugs = drugs.filter((d) => isVerifiedAtc(d.atc));
+  const cited = verifiedDrugs.filter((d) => GOLD_CITATIONS[d.id]).length;
+  return { verified: verifiedDrugs.length, cited };
 }

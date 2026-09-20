@@ -1,5 +1,7 @@
 # MedWise
 
+_[English: README.en.md](README.en.md)_
+
 İlacını anlamakta zorlanan insanlar için yazılmış bir ilaç rehberi ve doz takip
 uygulaması. Türkçe arayüz, altı bağımsız sayfa, tamamen tarayıcıda çalışır.
 
@@ -23,7 +25,7 @@ sayımı tahmin değil, kesin bir işlemdir.
 | Metin katmanı                             | Kayıt | Ateşman ortancası | Bandlar                      |
 | ----------------------------------------- | ----- | ----------------- | ---------------------------- |
 | Teknik açıklamalar (tümü)                 | 593   | **1.65**          | 558 çok zor, 31 zor, 4 orta  |
-| Teknik açıklamalar (doğrulanmış alt küme) | 56    | **33.86**         | çoğunluk zor                 |
+| Teknik açıklamalar (kaynaklı doğrulanmış) | 56    | **33.86**         | çoğunluk zor                 |
 | **Sade dil katmanı**                      | 56    | **77.15**         | 44 kolay, 7 çok kolay, 0 zor |
 
 Uygulama: [`src/utils/readability.ts`](src/utils/readability.ts).
@@ -54,6 +56,13 @@ Uygulama bu kayıtları gizlemiyor. Bunun yerine:
 - Doğrulanmış kayıtlarda WHO ATC, FDA NDC ve TİTCK KÜB arama bağlantıları var.
   Bunlar birer **kontrol noktası**, birer kaynak gösterimi değil: kimse tek tek
   doğrulamadı.
+
+**Kaynaklı doğrulama kümesi.** 56 kaydın ATC biçimi geçerli olmasının ötesinde,
+her biri gerçek bir kaynağa karşı elle kontrol edildi: WHO ATC/DDD Index ve —
+bulunabildiğinde — bir FDA DailyMed etiketi. Her ikisi de gerçek belge
+bağlantısıdır, arama sayfası değil, ve her monografta kontrol tarihiyle
+birlikte gösterilir. Bu, veri kümesindeki tek "bir belgeye karşı kontrol
+edildi" iddiasıdır. Kaynak: [`src/data/goldCitations.ts`](src/data/goldCitations.ts).
 
 Mantık: [`src/utils/provenance.ts`](src/utils/provenance.ts).
 
@@ -163,7 +172,8 @@ npm run dev
 - 537 kaydın tanımlayıcıları uydurma (yukarıya bakın). Doğru çözüm, bunları TİTCK
   KÜB ve FDA etiketlerinden tek tek doğrulamaktır; yapılmadı.
 - Sade dil özetleri yalnızca 56 doğrulanmış kaydı kapsıyor.
-- Hiçbir gerçek kullanıcıyla anlama testi yapılmadı.
+- Anlama testi protokolü tanımlandı ([`analysis/CLOZE_PROTOCOL.md`](analysis/CLOZE_PROTOCOL.md)),
+  ama gerçek katılımcılarla henüz veri toplanmadı. Hiçbir anlama iddiası yok.
 - Erişilebilirlik iyileştirildi (atlama bağlantısı, odak tuzağı, `aria` etiketleri,
   görünür odak halkası) ama ekran okuyucuyla uçtan uca test edilmedi.
 

@@ -1,11 +1,15 @@
 {
-  "generatedAt": "2026-09-19T23:42:58.182Z",
+  "generatedAt": "2026-09-20T20:52:24.293Z",
   "corpusFile": "public/drugs.json",
   "provenance": {
     "total": 593,
     "verified": 56,
     "unverified": 537,
     "unverifiedPercent": 90.6
+  },
+  "citations": {
+    "verified": 56,
+    "cited": 56
   },
   "technicalDescriptions": {
     "count": 593,

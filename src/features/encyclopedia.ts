@@ -91,6 +91,17 @@ function renderProvenanceBanner(drug: Drug): void {
     })
     .join("");
 
+  const citationLinks = prov.citation
+    ? `<ul class="text-[11px] space-y-0.5 pl-7 pt-1">
+        <li><span class="font-semibold">Kaynak:</span> <a class="font-mono underline hover:no-underline" href="${escapeHtml(prov.citation.atcSource.url)}" target="_blank" rel="noreferrer">${escapeHtml(prov.citation.atcSource.label)}</a></li>
+        ${
+          prov.citation.labelSource
+            ? `<li><span class="font-semibold">Kaynak:</span> <a class="font-mono underline hover:no-underline" href="${escapeHtml(prov.citation.labelSource.url)}" target="_blank" rel="noreferrer">${escapeHtml(prov.citation.labelSource.label)}</a> (${escapeHtml(prov.citation.labelSource.registry)})</li>`
+            : ""
+        }
+      </ul>`
+    : "";
+
   host.innerHTML = `
     <div class="rounded-2xl border-2 ${tone} p-4 space-y-2" role="${verified ? "note" : "alert"}">
       <div class="flex items-start gap-2">
@@ -98,6 +109,7 @@ function renderProvenanceBanner(drug: Drug): void {
         <p class="text-xs font-semibold leading-relaxed">${escapeHtml(prov.notice)}</p>
       </div>
       <ul class="text-[11px] space-y-0.5 pl-7">${links}</ul>
+      ${citationLinks}
     </div>
   `;
 }

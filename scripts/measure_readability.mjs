@@ -18,7 +18,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { summarizeCorpus, scoreReadability } from "../src/utils/readability.ts";
-import { summarizeProvenance, isVerifiedAtc } from "../src/utils/provenance.ts";
+import { summarizeProvenance, summarizeCitations, isVerifiedAtc } from "../src/utils/provenance.ts";
 import { buildPlainSummary } from "../src/utils/plainLanguage.ts";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -38,6 +38,7 @@ const report = {
   generatedAt: new Date().toISOString(),
   corpusFile: path.relative(ROOT, CORPUS).replace(/\\/g, "/"),
   provenance: summarizeProvenance(drugs),
+  citations: summarizeCitations(drugs),
   technicalDescriptions: summarizeCorpus(drugs.map((d) => d.description)),
   technicalDescriptionsVerifiedSubset: summarizeCorpus(verified.map((d) => d.description)),
   interactionWarnings: summarizeCorpus(
@@ -58,6 +59,7 @@ const p = report.plainLanguageSummaries;
 const pr = report.provenance;
 
 console.log(`Corpus       : ${pr.total} records (${pr.verified} verified, ${pr.unverified} not)`);
+console.log(`Citations    : ${report.citations.cited}/${report.citations.verified} shape-verified records have a real registry citation`);
 console.log(`Technical    : median Ateşman ${t.medianAtesman}  [${JSON.stringify(t.bands)}]`);
 console.log(`Plain layer  : median Ateşman ${p.medianAtesman}  [${JSON.stringify(p.bands)}]`);
 console.log(`Report       : ${path.relative(ROOT, OUT_FILE).replace(/\\/g, "/")}`);

@@ -8,7 +8,12 @@ import {
   summarizeCorpus,
   tokenizeWords,
 } from "../src/utils/readability.ts";
-import { isVerifiedAtc, getDrugProvenance, summarizeProvenance } from "../src/utils/provenance.ts";
+import {
+  isVerifiedAtc,
+  getDrugProvenance,
+  summarizeProvenance,
+  summarizeCitations,
+} from "../src/utils/provenance.ts";
 import { buildPlainSummary, coveredAtcGroups } from "../src/utils/plainLanguage.ts";
 
 const drugs: Drug[] = JSON.parse(
@@ -115,6 +120,44 @@ describe("Per-field provenance", () => {
     expect(bad.status).toBe("unverified");
     expect(bad.fields.every((f) => f.lookupUrl === null)).toBe(true);
     expect(bad.notice).toContain("GERÇEK DEĞİLDİR");
+  });
+});
+
+describe("Gold-set citations", () => {
+  it("gives every shape-verified drug a hand-checked registry citation", () => {
+    const summary = summarizeCitations(drugs);
+    expect(summary.verified).toBeGreaterThan(0);
+    expect(summary.cited).toBe(summary.verified);
+  });
+
+  it("only attaches a citation to records whose ATC is shape-verified", () => {
+    const unverified = drugs.filter((d) => !isVerifiedAtc(d.atc));
+    for (const drug of unverified) {
+      expect(getDrugProvenance(drug).citation).toBeNull();
+    }
+  });
+
+  it("gives every citation a real https URL and a verification date", () => {
+    const verified = drugs.filter((d) => isVerifiedAtc(d.atc));
+    for (const drug of verified) {
+      const { citation } = getDrugProvenance(drug);
+      expect(citation, `missing citation for ${drug.id}`).not.toBeNull();
+      expect(citation!.atcSource.url).toMatch(/^https:\/\//);
+      expect(citation!.verifiedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      if (citation!.labelSource) {
+        expect(citation!.labelSource.url).toMatch(/^https:\/\//);
+      }
+    }
+  });
+
+  it("upgrades the banner notice for cited records instead of the shape-only claim", () => {
+    const cited = drugs.find((d) => getDrugProvenance(d).citation !== null);
+    expect(cited).toBeTruthy();
+    const notice = getDrugProvenance(cited!).notice;
+    expect(notice).toContain("ATC/DDD Index");
+    expect(notice).not.toBe(
+      "Bu kaydın ATC sınıf kodu geçerli WHO biçimindedir. Yine de aşağıdaki bağlantılardan kendiniz doğrulayabilirsiniz."
+    );
   });
 });
 
