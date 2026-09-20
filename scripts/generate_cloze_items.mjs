@@ -98,7 +98,9 @@ function buildPassage(drug, layer) {
 }
 
 const drugs = JSON.parse(fs.readFileSync(CORPUS, "utf-8"));
-const goldSet = drugs.filter((d) => isVerifiedAtc(d.atc) && GOLD_CITATIONS[d.id] && buildPlainSummary(d));
+const goldSet = drugs.filter(
+  (d) => isVerifiedAtc(d.atc) && GOLD_CITATIONS[d.id] && buildPlainSummary(d)
+);
 
 const selected = pickAcrossClasses(goldSet, ITEM_COUNT);
 if (selected.length < ITEM_COUNT) {

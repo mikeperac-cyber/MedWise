@@ -29,15 +29,15 @@ Turkish, every syllable contains exactly one vowel, so syllable counting is
 exact, not estimated.
 
 | Text layer                                 | n   | Median Ateşman | Bands                            |
-| ------------------------------------------- | --- | -------------- | --------------------------------- |
-| Technical descriptions (all)                | 593 | **1.65**       | 558 very hard, 31 hard, 4 medium |
-| Technical descriptions (citation-verified)  | 56  | **33.86**      | mostly hard                       |
-| **Plain-language layer**                    | 56  | **77.15**      | 44 easy, 7 very easy, 0 hard      |
+| ------------------------------------------ | --- | -------------- | -------------------------------- |
+| Technical descriptions (all)               | 593 | **1.65**       | 558 very hard, 31 hard, 4 medium |
+| Technical descriptions (citation-verified) | 56  | **33.86**      | mostly hard                      |
+| **Plain-language layer**                   | 56  | **77.15**      | 44 easy, 7 very easy, 0 hard     |
 
 Implementation: [`src/utils/readability.ts`](src/utils/readability.ts).
 
-**What this measurement does not say:** it shows the text is *readable*. It
-does not show a patient *understood* it. Proving that requires a real
+**What this measurement does not say:** it shows the text is _readable_. It
+does not show a patient _understood_ it. Proving that requires a real
 comprehension test with real readers. See
 [`analysis/CLOZE_PROTOCOL.md`](analysis/CLOZE_PROTOCOL.md) for the protocol
 designed to run that test — the protocol exists; the data collection does
@@ -85,14 +85,14 @@ Logic: [`src/utils/provenance.ts`](src/utils/provenance.ts).
 Six separate HTML documents. Single-page hash routing was removed; each page
 has its own URL, its own `<title>`, and its own JavaScript bundle.
 
-| Page               | Path             | What it does                                                                 |
-| ------------------- | ---------------- | ----------------------------------------------------------------------------- |
-| Dose Cockpit        | `/`              | Today's doses, adherence ring, water tracking, as-needed meds                 |
-| Drug Encyclopedia   | `/ansiklopedi`   | Pill appearance first, then a plain-language summary, technical detail last   |
-| Cross-Interaction   | `/etkilesim`     | Whether two or more drugs interact                                            |
-| Chronobiology       | `/kronobiyoloji` | Which drug works better taken at which time of day                            |
-| BYOK AI Lab         | `/yapay-zeka`    | Optional workspace that runs on your own API key                              |
-| Academic Portfolio  | `/portfolyo`     | Method, measurements, data audit, clinical cases                              |
+| Page               | Path             | What it does                                                                |
+| ------------------ | ---------------- | --------------------------------------------------------------------------- |
+| Dose Cockpit       | `/`              | Today's doses, adherence ring, water tracking, as-needed meds               |
+| Drug Encyclopedia  | `/ansiklopedi`   | Pill appearance first, then a plain-language summary, technical detail last |
+| Cross-Interaction  | `/etkilesim`     | Whether two or more drugs interact                                          |
+| Chronobiology      | `/kronobiyoloji` | Which drug works better taken at which time of day                          |
+| BYOK AI Lab        | `/yapay-zeka`    | Optional workspace that runs on your own API key                            |
+| Academic Portfolio | `/portfolyo`     | Method, measurements, data audit, clinical cases                            |
 
 ### Page architecture
 
@@ -149,18 +149,18 @@ Open `http://localhost:5173`.
 
 ### Commands
 
-| Command                       | Description                                                 |
-| ------------------------------ | ------------------------------------------------------------ |
-| `npm run dev`                  | Development server                                           |
-| `npm run build`                | Type-checks and builds all six pages into `dist/`             |
-| `npm run preview`              | Previews the built output locally                             |
-| `npm test`                     | Runs tests in watch mode                                       |
-| `npm run test:run`             | Runs tests once                                                 |
-| `npm run typecheck`            | `tsc --noEmit`                                                   |
-| `npm run lint`                 | ESLint                                                            |
-| `npm run format`               | Prettier                                                          |
-| `npm run measure:readability`  | Writes the readability & provenance report to `analysis/`        |
-| `npm run build:analyze`        | Bundle-size visualization                                         |
+| Command                       | Description                                               |
+| ----------------------------- | --------------------------------------------------------- |
+| `npm run dev`                 | Development server                                        |
+| `npm run build`               | Type-checks and builds all six pages into `dist/`         |
+| `npm run preview`             | Previews the built output locally                         |
+| `npm test`                    | Runs tests in watch mode                                  |
+| `npm run test:run`            | Runs tests once                                           |
+| `npm run typecheck`           | `tsc --noEmit`                                            |
+| `npm run lint`                | ESLint                                                    |
+| `npm run format`              | Prettier                                                  |
+| `npm run measure:readability` | Writes the readability & provenance report to `analysis/` |
+| `npm run build:analyze`       | Bundle-size visualization                                 |
 
 ---
 

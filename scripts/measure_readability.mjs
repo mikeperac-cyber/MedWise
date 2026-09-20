@@ -59,7 +59,9 @@ const p = report.plainLanguageSummaries;
 const pr = report.provenance;
 
 console.log(`Corpus       : ${pr.total} records (${pr.verified} verified, ${pr.unverified} not)`);
-console.log(`Citations    : ${report.citations.cited}/${report.citations.verified} shape-verified records have a real registry citation`);
+console.log(
+  `Citations    : ${report.citations.cited}/${report.citations.verified} shape-verified records have a real registry citation`
+);
 console.log(`Technical    : median Ateşman ${t.medianAtesman}  [${JSON.stringify(t.bands)}]`);
 console.log(`Plain layer  : median Ateşman ${p.medianAtesman}  [${JSON.stringify(p.bands)}]`);
 console.log(`Report       : ${path.relative(ROOT, OUT_FILE).replace(/\\/g, "/")}`);
